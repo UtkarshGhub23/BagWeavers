@@ -30,7 +30,7 @@ export default function Header() {
                 <div className="header-left">
                     <a href="/" className="header-logo-link" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = '/';
+                        navigate('/');
                     }}>
                         <div className="header-logo-icon">
                             <svg viewBox="0 0 60 60" width="32" height="32">

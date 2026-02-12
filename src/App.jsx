@@ -16,7 +16,7 @@ import OrderConfirmation from './pages/OrderConfirmation';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/BagWeavers">
       <AuthProvider>
         <CartProvider>
           <Loader />

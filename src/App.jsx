@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { AuthProvider } from './context/AuthContext';
@@ -27,11 +27,46 @@ import SupportPage from './pages/SupportPage';
 
 // Layout for main pages with Header/Footer
 const MainLayout = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.05, // Lower threshold for better mobile triggering
+      rootMargin: '0px 0px -20px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Stop observing once revealed
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+    // Fallback: If elements are still not revealed after 3 seconds, show them anyway
+    const fallbackTimer = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.active)').forEach(el => {
+        el.classList.add('active');
+      });
+    }, 3000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, [location.pathname]); // Re-run on every route change
+
   return (
     <>
       <Header />
       <MenuBar />
-      <Outlet />
+      <div className="main-content-area">
+        <Outlet />
+      </div>
       <Footer />
       <WhatsAppFAB />
       <MobileBottomNav />
@@ -40,25 +75,9 @@ const MainLayout = () => {
 };
 
 export default function App() {
-  // Intersection Observer for Scroll Reveal
+  // Scroll to top on route change
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, observerOptions);
-
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -5,11 +5,11 @@ import Categories from '../components/Categories';
 
 export default function HomePage() {
     return (
-        <>
-            <Hero />
-            <FeaturedProducts />
-            <TrustSection />
-            <Categories />
-        </>
+        <div className="homepage-reveal-wrapper">
+            <div className="reveal"><Hero /></div>
+            <div className="reveal"><FeaturedProducts /></div>
+            <div className="reveal"><TrustSection /></div>
+            <div className="reveal"><Categories /></div>
+        </div>
     );
 }

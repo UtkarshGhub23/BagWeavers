@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -9,6 +10,7 @@ import MenuBar from './components/MenuBar';
 import Loader from './components/Loader';
 import Footer from './components/Footer';
 import WhatsAppFAB from './components/WhatsAppFAB';
+import MobileBottomNav from './components/MobileBottomNav';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
@@ -32,11 +34,33 @@ const MainLayout = () => {
       <Outlet />
       <Footer />
       <WhatsAppFAB />
+      <MobileBottomNav />
     </>
   );
 };
 
 export default function App() {
+  // Intersection Observer for Scroll Reveal
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <ThemeProvider>
       <PreferencesProvider>

@@ -59,7 +59,7 @@ export const products = [
         rating: 4.7,
         reviews: 203,
         images: [
-            "https://images.unsplash.com/photo-1590874102052-81523c9076b1?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80",
         ],
         colors: ["Black", "Brown", "Navy"],

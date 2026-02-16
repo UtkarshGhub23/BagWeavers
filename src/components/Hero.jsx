@@ -4,7 +4,7 @@ import { usePreferences } from '../context/PreferencesContext';
 const heroImages = [
     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1590874102052-81523c9076b1?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80',
 ];

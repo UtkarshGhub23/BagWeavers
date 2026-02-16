@@ -84,9 +84,12 @@ export default function Header() {
                                     <line x1="30" y1="24" x2="30" y2="30" stroke="#333" strokeWidth="2" />
                                     <line x1="27" y1="30" x2="33" y2="30" stroke="#333" strokeWidth="2" />
                                 </svg>
-                                <span className="header-brand-name">BagWeavers</span>
+                                <span className="header-brand-name">Weaves of Vrinda</span>
                             </div>
                         </a>
+                        <nav className="header-ecosystem-links">
+                            <a href="https://vrindopnishad.in" className="ecosystem-link" target="_blank" rel="noreferrer">Vrindopnishad Portal</a>
+                        </nav>
                         <span className="header-collection-text">{t('header.handmadeCollection')}</span>
                     </div>
 
@@ -273,7 +276,7 @@ export default function Header() {
             <div className={`mobile-drawer-overlay ${mobileMenuOpen ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}></div>
             <div className={`mobile-drawer ${mobileMenuOpen ? 'active' : ''}`}>
                 <div className="mobile-drawer-header">
-                    <span className="header-brand-name">BagWeavers</span>
+                    <span className="header-brand-name">Weaves of Vrinda</span>
                     <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer' }}>✕</button>
                 </div>
                 <nav className="mobile-nav-links">

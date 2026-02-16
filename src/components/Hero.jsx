@@ -27,7 +27,7 @@ export default function Hero() {
                 {/* Left: Text Content */}
                 <div className="hero-text-content">
                     <h1 className="hero-title">
-                        Bag<span className="hero-w">W</span>eavers
+                        Weaves of <span className="hero-w">Vrinda</span>
                     </h1>
                     <p className="hero-subtitle">
                         {t('hero.discoverArt')} <br />
@@ -56,7 +56,7 @@ export default function Hero() {
                                     <circle cx="17.5" cy="6.5" r="1.5" fill="url(#insta-gradient)" />
                                 </svg>
                             </div>
-                            <span>BagWeavers</span>
+                            <span>Weaves of Vrinda</span>
                         </a>
                         <a href="https://whatsapp.com/channel/0029VbBYaqa8vd1Vf8k0Yp0N" className="hero-whatsapp" target="_blank" rel="noreferrer">
                             <div className="whatsapp-icon">

@@ -64,7 +64,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <PreferencesProvider>
-        <Router basename="/BagWeavers">
+        <Router basename="/">
           <AuthProvider>
             <CartProvider>
               <WishlistProvider>

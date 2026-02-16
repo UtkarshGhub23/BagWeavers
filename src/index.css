@@ -9,11 +9,13 @@
 
 :root {
     /* Colors - Refined Palette */
-    --yellow: #FFE500;
+    --yellow: #FFD700;
+    /* Spiritual Gold */
     --yellow-light: #FFF9C4;
-    --brown-dark: #3E1E0F;
-    --brown-medium: #6D3A1F;
-    --brown-accent: #C87533;
+    --brown-dark: #2C1810;
+    --brown-medium: #5D4037;
+    --brown-accent: #E65100;
+    /* Deep Saffron/Orange */
     --gray-bg: #F8F9FA;
     --gray-light: #E9ECEF;
     --white: #FFFFFF;
@@ -831,6 +833,34 @@ ul {
     font-size: 15px;
     font-family: var(--font-body);
     transition: all 0.2s ease;
+}
+
+/* ===== Ecosystem Links ===== */
+.header-ecosystem-links {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+}
+
+.ecosystem-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ecosystem-link:hover {
+    color: var(--brown-accent);
+}
+
+@media (max-width: 1024px) {
+    .header-ecosystem-links {
+        display: none;
+    }
 }
 
 .menu-bar-brand:hover {

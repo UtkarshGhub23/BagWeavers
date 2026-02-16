@@ -2,11 +2,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../context/CartContext';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function ProductDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const { formatPrice, t } = usePreferences();
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -40,12 +42,12 @@ export default function ProductDetailPage() {
         fetchProduct();
     }, [id]);
 
-    if (loading) return <div className="loading-container">Loading product details...</div>;
+    if (loading) return <div className="loading-container">{t('common.loading')}</div>;
 
     if (error || !product) {
         return (
             <div className="product-not-found">
-                <h2>{error ? `Error: ${error}` : 'Product Not Found'}</h2>
+                <h2>{error ? `${t('common.error')}: ${error}` : 'Product Not Found'}</h2>
                 <button onClick={() => navigate('/')} className="btn-primary">
                     Back to Home
                 </button>
@@ -84,7 +86,7 @@ export default function ProductDetailPage() {
                         <div className="main-image">
                             <img src={product.images ? product.images[selectedImage] : ''} alt={product.name} />
                             {product.discount > 0 && (
-                                <span className="discount-badge">{product.discount}% OFF</span>
+                                <span className="discount-badge">{product.discount}% {t('product.off')}</span>
                             )}
                         </div>
                         <div className="image-thumbnails">
@@ -110,14 +112,14 @@ export default function ProductDetailPage() {
                                 {'☆'.repeat(5 - Math.floor(product.rating || 0))}
                             </div>
                             <span className="rating-text">{product.rating}</span>
-                            <span className="reviews-count">({product.reviews} reviews)</span>
+                            <span className="reviews-count">({product.reviews} {t('productDetail.reviews').toLowerCase()})</span>
                         </div>
 
                         <div className="product-price">
-                            <span className="current-price">₹{product.price}</span>
+                            <span className="current-price">{formatPrice(product.price)}</span>
                             {product.original_price && (
                                 <>
-                                    <span className="original-price">₹{product.original_price}</span>
+                                    <span className="original-price">{formatPrice(product.original_price)}</span>
                                     <span className="discount-text">{product.discount}% off</span>
                                 </>
                             )}
@@ -128,7 +130,7 @@ export default function ProductDetailPage() {
                         {/* Color Selection */}
                         {product.colors && product.colors.length > 0 && (
                             <div className="product-option">
-                                <label>Color:</label>
+                                <label>{t('productDetail.color')}:</label>
                                 <div className="color-options">
                                     {product.colors.map(color => (
                                         <button
@@ -146,7 +148,7 @@ export default function ProductDetailPage() {
                         {/* Size Selection */}
                         {product.sizes && product.sizes.length > 0 && (
                             <div className="product-option">
-                                <label>Size:</label>
+                                <label>{t('productDetail.size')}:</label>
                                 <div className="size-options">
                                     {product.sizes.map(size => (
                                         <button
@@ -163,7 +165,7 @@ export default function ProductDetailPage() {
 
                         {/* Quantity */}
                         <div className="product-option">
-                            <label>Quantity:</label>
+                            <label>{t('productDetail.quantity')}:</label>
                             <div className="quantity-selector">
                                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
                                 <span>{quantity}</span>
@@ -178,25 +180,25 @@ export default function ProductDetailPage() {
                                 onClick={handleAddToCart}
                                 disabled={!product.in_stock}
                             >
-                                {addedToCart ? '✓ Added to Cart' : 'Add to Cart'}
+                                {addedToCart ? t('product.added') : t('product.addToCart')}
                             </button>
                             <button
                                 className="btn-buy-now"
                                 onClick={handleBuyNow}
                                 disabled={!product.in_stock}
                             >
-                                Buy Now
+                                {t('productDetail.buyNow')}
                             </button>
                         </div>
 
                         {!product.in_stock && (
-                            <p className="out-of-stock">Out of Stock</p>
+                            <p className="out-of-stock">{t('productDetail.outOfStock')}</p>
                         )}
 
                         {/* Specifications */}
                         {product.specifications && (
                             <div className="product-specifications">
-                                <h3>Specifications</h3>
+                                <h3>{t('productDetail.specifications')}</h3>
                                 <table>
                                     <tbody>
                                         {Object.entries(product.specifications).map(([key, value]) => (

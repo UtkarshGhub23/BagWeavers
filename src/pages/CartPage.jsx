@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function CartPage() {
     const navigate = useNavigate();
     const { cartItems, removeFromCart, updateQuantity, getCartTotal, getCartCount } = useCart();
+    const { formatPrice, t } = usePreferences();
 
     if (cartItems.length === 0) {
         return (
@@ -14,10 +16,10 @@ export default function CartPage() {
                         <line x1="3" y1="6" x2="21" y2="6" />
                         <path d="M16 10a4 4 0 01-8 0" />
                     </svg>
-                    <h2>Your Cart is Empty</h2>
+                    <h2>{t('cart.empty')}</h2>
                     <p>Add some products to get started!</p>
                     <button onClick={() => navigate('/')} className="btn-primary">
-                        Continue Shopping
+                        {t('cart.startShopping')}
                     </button>
                 </div>
             </div>
@@ -32,7 +34,7 @@ export default function CartPage() {
     return (
         <div className="cart-page">
             <div className="cart-container">
-                <h1 className="cart-title">Shopping Cart ({getCartCount()} items)</h1>
+                <h1 className="cart-title">{t('cart.title')} ({getCartCount()} {t('cart.items')})</h1>
 
                 <div className="cart-content">
                     {/* Cart Items */}
@@ -49,17 +51,17 @@ export default function CartPage() {
 
                                     <div className="cart-item-options">
                                         {item.selectedColor && (
-                                            <span className="option">Color: {item.selectedColor}</span>
+                                            <span className="option">{t('productDetail.color')}: {item.selectedColor}</span>
                                         )}
                                         {item.selectedSize && (
-                                            <span className="option">Size: {item.selectedSize}</span>
+                                            <span className="option">{t('productDetail.size')}: {item.selectedSize}</span>
                                         )}
                                     </div>
 
                                     <div className="cart-item-price">
-                                        <span className="price">₹{item.price}</span>
+                                        <span className="price">{formatPrice(item.price)}</span>
                                         {item.originalPrice && (
-                                            <span className="original-price">₹{item.originalPrice}</span>
+                                            <span className="original-price">{formatPrice(item.originalPrice)}</span>
                                         )}
                                     </div>
                                 </div>
@@ -85,11 +87,11 @@ export default function CartPage() {
                                         onClick={() => removeFromCart(item.id, item.selectedSize, item.selectedColor)}
                                         className="remove-btn"
                                     >
-                                        Remove
+                                        {t('cart.remove')}
                                     </button>
 
                                     <div className="item-total">
-                                        ₹{item.price * item.quantity}
+                                        {formatPrice(item.price * item.quantity)}
                                     </div>
                                 </div>
                             </div>
@@ -98,16 +100,16 @@ export default function CartPage() {
 
                     {/* Cart Summary */}
                     <div className="cart-summary">
-                        <h2>Order Summary</h2>
+                        <h2>{t('checkout.orderSummary')}</h2>
 
                         <div className="summary-row">
-                            <span>Subtotal:</span>
-                            <span>₹{subtotal}</span>
+                            <span>{t('cart.subtotal')}:</span>
+                            <span>{formatPrice(subtotal)}</span>
                         </div>
 
                         <div className="summary-row">
-                            <span>Shipping:</span>
-                            <span>{shipping === 0 ? 'FREE' : `₹${shipping}`}</span>
+                            <span>{t('cart.shipping')}:</span>
+                            <span>{shipping === 0 ? t('cart.freeShipping') : formatPrice(shipping)}</span>
                         </div>
 
                         {shipping === 0 && (
@@ -115,29 +117,29 @@ export default function CartPage() {
                         )}
 
                         <div className="summary-row">
-                            <span>Tax (18%):</span>
-                            <span>₹{tax}</span>
+                            <span>{t('cart.tax')}:</span>
+                            <span>{formatPrice(tax)}</span>
                         </div>
 
                         <div className="summary-divider"></div>
 
                         <div className="summary-row total">
-                            <span>Total:</span>
-                            <span>₹{total}</span>
+                            <span>{t('cart.total')}:</span>
+                            <span>{formatPrice(total)}</span>
                         </div>
 
                         <button
                             onClick={() => navigate('/checkout')}
                             className="checkout-btn"
                         >
-                            Proceed to Checkout
+                            {t('cart.proceedToCheckout')}
                         </button>
 
                         <button
                             onClick={() => navigate('/')}
                             className="continue-shopping-btn"
                         >
-                            Continue Shopping
+                            {t('cart.startShopping')}
                         </button>
                     </div>
                 </div>

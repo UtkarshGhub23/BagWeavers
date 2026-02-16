@@ -1,14 +1,31 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function Header() {
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
     const navigate = useNavigate();
     const { cart } = useCart();
-    const { user, signOut } = useAuth();
+    const { getWishlistCount } = useWishlist();
+    const { user, signOut, loading } = useAuth();
+    const { t } = usePreferences();
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const handleSearch = () => {
         if (searchQuery.trim()) {
@@ -22,6 +39,12 @@ export default function Header() {
     };
 
     const cartItemCount = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+    const wishlistCount = getWishlistCount();
+
+    const handleDropdownNav = (path) => {
+        setDropdownOpen(false);
+        navigate(path);
+    };
 
     return (
         <header className="reference-header">
@@ -44,7 +67,7 @@ export default function Header() {
                             <span className="header-brand-name">BagWeavers</span>
                         </div>
                     </a>
-                    <span className="header-collection-text">Handmade Collection</span>
+                    <span className="header-collection-text">{t('header.handmadeCollection')}</span>
                 </div>
 
                 {/* Center: Search Icon */}
@@ -62,43 +85,139 @@ export default function Header() {
 
                 {/* Right: Icons + User */}
                 <div className="header-right">
-                    <button className="header-icon-btn" onClick={() => {
-                        const pincode = prompt('Enter your pincode:');
-                        if (pincode) alert(`Delivery available at ${pincode}!`);
-                    }}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="10" r="3" />
-                            <path d="M12 2a8 8 0 0 0-8 8c0 5.4 7.05 11.5 7.35 11.76a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8z" />
+                    <button className="header-icon-btn header-heart-btn" onClick={() => navigate('/wishlist')}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="heartFill" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#ffd6e0" />
+                                    <stop offset="1" stopColor="#ffb3c6" />
+                                </linearGradient>
+                                <linearGradient id="heartStroke" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#e8607a" />
+                                    <stop offset="1" stopColor="#c9344e" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartFill)" stroke="url(#heartStroke)" strokeWidth="1.5" />
+                            <path d="M15 6.5l1.2 0.3 0.3 1.2-0.3 1.2-1.2 0.3-1.2-0.3-0.3-1.2 0.3-1.2z" fill="white" opacity="0.6" className="icon-sparkle" />
                         </svg>
-                    </button>
-
-                    <button className="header-icon-btn header-heart-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                        </svg>
+                        {wishlistCount > 0 && (
+                            <span className="header-wishlist-badge">{wishlistCount}</span>
+                        )}
                     </button>
 
                     <button className="header-icon-btn header-cart-btn" onClick={() => navigate('/cart')}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                            <line x1="3" y1="6" x2="21" y2="6" />
-                            <path d="M16 10a4 4 0 01-8 0" />
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="bagFill" x1="5" y1="8" x2="19" y2="22" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#f5e6d0" />
+                                    <stop offset="1" stopColor="#e8d0b3" />
+                                </linearGradient>
+                                <linearGradient id="bagStroke" x1="5" y1="6" x2="19" y2="22" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#C87533" />
+                                    <stop offset="1" stopColor="#8B4513" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M5.5 9h13l-1.2 10.5a1.5 1.5 0 01-1.5 1.5H8.2a1.5 1.5 0 01-1.5-1.5L5.5 9z" fill="url(#bagFill)" stroke="url(#bagStroke)" strokeWidth="1.5" strokeLinejoin="round" />
+                            <path d="M8 9V7a4 4 0 018 0v2" stroke="url(#bagStroke)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                            {/* Woven texture */}
+                            <line x1="9" y1="13" x2="15" y2="13" stroke="#C87533" strokeWidth="0.6" opacity="0.25" />
+                            <line x1="9.2" y1="15.5" x2="14.8" y2="15.5" stroke="#C87533" strokeWidth="0.6" opacity="0.25" />
+                            <line x1="9.5" y1="18" x2="14.5" y2="18" stroke="#C87533" strokeWidth="0.6" opacity="0.25" />
+                            {/* Clasp */}
+                            <circle cx="12" cy="11" r="1" stroke="#C87533" strokeWidth="0.8" fill="none" />
                         </svg>
                         {cartItemCount > 0 && (
                             <span className="header-cart-badge">{cartItemCount}</span>
                         )}
                     </button>
 
-                    {user ? (
-                        <div className="header-user-profile">
-                            <span className="header-user-name">{user.name}</span>
-                            <div className="header-user-avatar">
-                                {user.name.charAt(0).toUpperCase()}
-                            </div>
+                    {loading ? (
+                        <div className="header-auth-loading">
+                            <div className="header-auth-skeleton"></div>
+                        </div>
+                    ) : user ? (
+                        <div className="header-user-dropdown-wrap" ref={dropdownRef}>
+                            <button
+                                className={`header-user-profile ${dropdownOpen ? 'active' : ''}`}
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                            >
+                                <span className="header-user-name">{user.name}</span>
+                                <div className="header-user-avatar">
+                                    {user.name.charAt(0).toUpperCase()}
+                                </div>
+                                <svg className={`header-dropdown-chevron ${dropdownOpen ? 'open' : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </button>
+                            {dropdownOpen && (
+                                <div className="header-dropdown-menu" id="header-account-dropdown-menu">
+                                    {/* Profile Header - Centered */}
+                                    <div className="dropdown-profile-header">
+                                        <div className="dropdown-avatar-large">
+                                            {user.name.charAt(0).toUpperCase()}
+                                        </div>
+                                        <span className="dropdown-profile-name">{user.name}</span>
+                                        <span className="dropdown-profile-email">{user.email}</span>
+                                    </div>
+
+                                    {/* Account - highlighted */}
+                                    <button className="header-dropdown-item active" onClick={() => handleDropdownNav('/account')}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                            <circle cx="12" cy="7" r="4" />
+                                        </svg>
+                                        <span>{t('header.account')}</span>
+                                    </button>
+
+                                    {/* Manage Users */}
+                                    <button className="header-dropdown-item" onClick={() => handleDropdownNav('/account')}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                            <circle cx="9" cy="7" r="4" />
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        </svg>
+                                        <span>{t('header.manageUsers')}</span>
+                                    </button>
+
+                                    {/* Invoice Breakdown */}
+                                    <button className="header-dropdown-item" onClick={() => handleDropdownNav('/account')}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                            <polyline points="14 2 14 8 20 8" />
+                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                            <polyline points="10 9 9 9 8 9" />
+                                        </svg>
+                                        <span>{t('header.invoiceBreakdown')}</span>
+                                    </button>
+
+                                    <div className="header-dropdown-divider"></div>
+
+                                    {/* Support */}
+                                    <button className="header-dropdown-item" onClick={() => handleDropdownNav('/contact')}>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                                        </svg>
+                                        <span>{t('header.support')}</span>
+                                    </button>
+
+                                    <div className="header-dropdown-divider"></div>
+
+                                    {/* Logout Button */}
+                                    <div className="dropdown-logout-section">
+                                        <button className="dropdown-logout-btn" onClick={() => handleDropdownNav('/auth/logout')}>
+                                            {t('header.logout')}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <button className="header-signin-btn" onClick={() => navigate('/auth/signin')}>
-                            Sign In
+                            {t('header.signIn')}
                         </button>
                     )}
                 </div>
@@ -110,7 +229,7 @@ export default function Header() {
                     <div className="header-search-container">
                         <input
                             type="text"
-                            placeholder="Search anything..."
+                            placeholder={t('header.searchPlaceholder')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyPress={handleKeyPress}

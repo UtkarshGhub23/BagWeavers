@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function CheckoutPage() {
     const navigate = useNavigate();
     const { cartItems, getCartTotal, clearCart } = useCart();
     const { user, isAuthenticated } = useAuth();
+    const { formatPrice, t } = usePreferences();
 
     const [step, setStep] = useState(1);
     const [shippingInfo, setShippingInfo] = useState({
@@ -22,10 +24,10 @@ export default function CheckoutPage() {
     if (!isAuthenticated) {
         return (
             <div className="checkout-auth-required">
-                <h2>Please Sign In to Continue</h2>
-                <p>You need to be signed in to complete your purchase.</p>
+                <h2>{t('settings.signInRequired')}</h2>
+                <p>{t('settings.signInToView')}</p>
                 <button onClick={() => navigate('/auth/signin')} className="btn-primary">
-                    Sign In
+                    {t('header.signIn')}
                 </button>
             </div>
         );
@@ -55,21 +57,21 @@ export default function CheckoutPage() {
     return (
         <div className="checkout-page">
             <div className="checkout-container">
-                <h1>Checkout</h1>
+                <h1>{t('checkout.title')}</h1>
 
                 {/* Progress Steps */}
                 <div className="checkout-steps">
                     <div className={`step ${step >= 1 ? 'active' : ''}`}>
                         <span className="step-number">1</span>
-                        <span className="step-label">Shipping</span>
+                        <span className="step-label">{t('cart.shipping')}</span>
                     </div>
                     <div className={`step ${step >= 2 ? 'active' : ''}`}>
                         <span className="step-number">2</span>
-                        <span className="step-label">Payment</span>
+                        <span className="step-label">{t('checkout.paymentMethod')}</span>
                     </div>
                     <div className={`step ${step >= 3 ? 'active' : ''}`}>
                         <span className="step-number">3</span>
-                        <span className="step-label">Review</span>
+                        <span className="step-label">{t('productDetail.reviews')}</span>
                     </div>
                 </div>
 
@@ -78,11 +80,11 @@ export default function CheckoutPage() {
                         {/* Step 1: Shipping Address */}
                         {step === 1 && (
                             <form onSubmit={handleShippingSubmit} className="shipping-form">
-                                <h2>Shipping Address</h2>
+                                <h2>{t('checkout.shippingAddress')}</h2>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Full Name *</label>
+                                        <label>{t('settings.fullName')} *</label>
                                         <input
                                             type="text"
                                             value={shippingInfo.fullName}
@@ -91,7 +93,7 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Phone Number *</label>
+                                        <label>{t('settings.phone')} *</label>
                                         <input
                                             type="tel"
                                             value={shippingInfo.phone}
@@ -149,7 +151,7 @@ export default function CheckoutPage() {
                         {/* Step 2: Payment Method */}
                         {step === 2 && (
                             <div className="payment-section">
-                                <h2>Payment Method</h2>
+                                <h2>{t('checkout.paymentMethod')}</h2>
 
                                 <div className="payment-options">
                                     <label className={`payment-option ${paymentMethod === 'cod' ? 'selected' : ''}`}>
@@ -205,22 +207,22 @@ export default function CheckoutPage() {
                                 <h2>Review Your Order</h2>
 
                                 <div className="review-shipping">
-                                    <h3>Shipping Address</h3>
+                                    <h3>{t('checkout.shippingAddress')}</h3>
                                     <p>{shippingInfo.fullName}</p>
                                     <p>{shippingInfo.phone}</p>
                                     <p>{shippingInfo.address}</p>
                                     <p>{shippingInfo.city}, {shippingInfo.state} - {shippingInfo.pincode}</p>
-                                    <button onClick={() => setStep(1)} className="btn-edit">Edit</button>
+                                    <button onClick={() => setStep(1)} className="btn-edit">{t('settings.edit')}</button>
                                 </div>
 
                                 <div className="review-payment">
-                                    <h3>Payment Method</h3>
+                                    <h3>{t('checkout.paymentMethod')}</h3>
                                     <p>
                                         {paymentMethod === 'cod' && 'Cash on Delivery'}
                                         {paymentMethod === 'upi' && 'UPI Payment'}
                                         {paymentMethod === 'card' && 'Credit/Debit Card'}
                                     </p>
-                                    <button onClick={() => setStep(2)} className="btn-edit">Edit</button>
+                                    <button onClick={() => setStep(2)} className="btn-edit">{t('settings.edit')}</button>
                                 </div>
 
                                 <div className="review-items">
@@ -231,19 +233,19 @@ export default function CheckoutPage() {
                                             <div className="review-item-info">
                                                 <p className="item-name">{item.name}</p>
                                                 <p className="item-options">
-                                                    {item.selectedColor && `Color: ${item.selectedColor}`}
-                                                    {item.selectedSize && ` | Size: ${item.selectedSize}`}
+                                                    {item.selectedColor && `${t('productDetail.color')}: ${item.selectedColor}`}
+                                                    {item.selectedSize && ` | ${t('productDetail.size')}: ${item.selectedSize}`}
                                                 </p>
                                                 <p className="item-quantity">Qty: {item.quantity}</p>
                                             </div>
-                                            <p className="item-price">₹{item.price * item.quantity}</p>
+                                            <p className="item-price">{formatPrice(item.price * item.quantity)}</p>
                                         </div>
                                     ))}
                                 </div>
 
                                 <div className="checkout-actions">
                                     <button onClick={() => setStep(2)} className="btn-back">Back</button>
-                                    <button onClick={handlePlaceOrder} className="btn-place-order">Place Order</button>
+                                    <button onClick={handlePlaceOrder} className="btn-place-order">{t('checkout.placeOrder')}</button>
                                 </div>
                             </div>
                         )}
@@ -251,23 +253,23 @@ export default function CheckoutPage() {
 
                     {/* Order Summary Sidebar */}
                     <div className="checkout-summary">
-                        <h3>Order Summary</h3>
+                        <h3>{t('checkout.orderSummary')}</h3>
                         <div className="summary-row">
-                            <span>Subtotal:</span>
-                            <span>₹{subtotal}</span>
+                            <span>{t('cart.subtotal')}:</span>
+                            <span>{formatPrice(subtotal)}</span>
                         </div>
                         <div className="summary-row">
-                            <span>Shipping:</span>
-                            <span>{shipping === 0 ? 'FREE' : `₹${shipping}`}</span>
+                            <span>{t('cart.shipping')}:</span>
+                            <span>{shipping === 0 ? t('cart.freeShipping') : formatPrice(shipping)}</span>
                         </div>
                         <div className="summary-row">
-                            <span>Tax:</span>
-                            <span>₹{tax}</span>
+                            <span>{t('cart.tax')}:</span>
+                            <span>{formatPrice(tax)}</span>
                         </div>
                         <div className="summary-divider"></div>
                         <div className="summary-row total">
-                            <span>Total:</span>
-                            <span>₹{total}</span>
+                            <span>{t('cart.total')}:</span>
+                            <span>{formatPrice(total)}</span>
                         </div>
                     </div>
                 </div>

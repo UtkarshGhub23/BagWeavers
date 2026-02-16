@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { supabase } from '../lib/supabase';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function FeaturedProducts() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { t } = usePreferences();
 
     useEffect(() => {
         async function fetchProducts() {
@@ -27,18 +29,18 @@ export default function FeaturedProducts() {
         fetchProducts();
     }, []);
 
-    if (loading) return <div className="loading-container">Loading products...</div>;
-    if (error) return <div className="error-message">Error: {error}</div>;
+    if (loading) return <div className="loading-container">{t('featured.loading')}</div>;
+    if (error) return <div className="error-message">{t('common.error')}: {error}</div>;
 
     return (
         <section className="featured-products" id="featured">
             <div className="section-header">
                 <div className="section-title-group">
-                    <h2 className="section-title">Featured Products</h2>
-                    <p className="section-subtitle">Handpicked collection just for you</p>
+                    <h2 className="section-title">{t('featured.title')}</h2>
+                    <p className="section-subtitle">{t('featured.subtitle')}</p>
                 </div>
                 <a href="#" className="view-all">
-                    View All →
+                    {t('featured.viewAll')}
                 </a>
             </div>
             <div className="products-grid">

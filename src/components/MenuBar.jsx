@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function MenuBar() {
+    const { t } = usePreferences();
+
     return (
         <nav className="menu-bar">
             <div className="menu-bar-container">
@@ -13,22 +16,22 @@ export default function MenuBar() {
                         BagWeavers
                     </Link>
                     <Link to="/" className="menu-bar-link">
-                        All Collections
+                        {t('menu.allCollections')}
                     </Link>
                     <Link to="/category/handbags" className="menu-bar-link">
-                        Handbags
+                        {t('menu.handbags')}
                     </Link>
                     <Link to="/category/backpacks" className="menu-bar-link">
-                        Backpacks
+                        {t('menu.backpacks')}
                     </Link>
                     <Link to="/category/crossbody" className="menu-bar-link">
-                        Crossbody
+                        {t('menu.crossbody')}
                     </Link>
                     <Link to="/category/totes" className="menu-bar-link">
-                        Totes
+                        {t('menu.totes')}
                     </Link>
                     <Link to="/category/clutches" className="menu-bar-link">
-                        Clutches
+                        {t('menu.clutches')}
                     </Link>
                 </div>
             </div>

@@ -1,4 +1,8 @@
+import { usePreferences } from '../context/PreferencesContext';
+
 export default function TrustSection() {
+    const { t } = usePreferences();
+
     return (
         <section className="trust-section" id="trust-section">
             <div className="trust-grid">
@@ -15,7 +19,7 @@ export default function TrustSection() {
                             <path d="M46 20 L49 23 L55 17" fill="none" stroke="white" strokeWidth="2" />
                         </svg>
                     </div>
-                    <p className="trust-label">Secure Payments</p>
+                    <p className="trust-label">{t('trust.securePayments')}</p>
                 </div>
 
                 {/* Assured Quality */}
@@ -29,7 +33,7 @@ export default function TrustSection() {
                             <path d="M32 14 C32 14 46 18 46 34 C46 50 32 58 32 58 C32 58 18 50 18 34 C18 18 32 14 32 14Z" fill="none" stroke="#C87533" strokeWidth="2" opacity="0.5" />
                         </svg>
                     </div>
-                    <p className="trust-label">Assured Quality</p>
+                    <p className="trust-label">{t('trust.assuredQuality')}</p>
                 </div>
 
                 {/* Made In India */}
@@ -45,7 +49,7 @@ export default function TrustSection() {
                             <path d="M15 44 Q32 56 49 44" fill="none" stroke="#C87533" strokeWidth="2" />
                         </svg>
                     </div>
-                    <p className="trust-label">Made In India</p>
+                    <p className="trust-label">{t('trust.madeInIndia')}</p>
                 </div>
 
                 {/* Timely Delivery */}
@@ -61,7 +65,7 @@ export default function TrustSection() {
                             <path d="M31 22 L36 22" stroke="#C87533" strokeWidth="2" />
                         </svg>
                     </div>
-                    <p className="trust-label">Timely Delivery</p>
+                    <p className="trust-label">{t('trust.timelyDelivery')}</p>
                 </div>
             </div>
         </section>

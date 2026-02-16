@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { usePreferences } from '../context/PreferencesContext';
 
 const heroImages = [
     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
@@ -10,6 +11,7 @@ const heroImages = [
 
 export default function Hero() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const { t } = usePreferences();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,11 +30,11 @@ export default function Hero() {
                         Bag<span className="hero-w">W</span>eavers
                     </h1>
                     <p className="hero-subtitle">
-                        Discover the art of <br />
-                        <span className="highlight">Handmade Elegance</span>
+                        {t('hero.discoverArt')} <br />
+                        <span className="highlight">{t('hero.handmadeElegance')}</span>
                     </p>
                     <p className="hero-description">
-                        Crafted with passion, designed for style. Elevate your everyday look with our exclusive collection of handmade bags.
+                        {t('hero.description')}
                     </p>
 
 

@@ -2,31 +2,23 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function SignUpPage() {
+export default function ResetPasswordPage() {
     const navigate = useNavigate();
-    const { signUp } = useAuth();
+    const { updatePassword } = useAuth();
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
         password: '',
         confirmPassword: '',
     });
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
-    const [confirmationSent, setConfirmationSent] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
-        if (!formData.name || !formData.email || !formData.phone || !formData.password) {
+        if (!formData.password || !formData.confirmPassword) {
             setError('Please fill in all fields');
-            return;
-        }
-
-        if (formData.password !== formData.confirmPassword) {
-            setError('Passwords do not match');
             return;
         }
 
@@ -35,21 +27,21 @@ export default function SignUpPage() {
             return;
         }
 
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
         setSubmitting(true);
         try {
-            const { error: authError, needsConfirmation } = await signUp(
-                formData.name,
-                formData.email,
-                formData.password,
-                formData.phone
-            );
-
-            if (authError) {
-                setError(authError.message || 'Registration failed. Please try again.');
-            } else if (needsConfirmation) {
-                setConfirmationSent(true);
+            const { error: updateError } = await updatePassword(formData.password);
+            if (updateError) {
+                setError(updateError.message || 'Failed to reset password');
             } else {
-                navigate('/');
+                setSuccess(true);
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000);
             }
         } catch (err) {
             setError('Something went wrong. Please try again.');
@@ -58,7 +50,7 @@ export default function SignUpPage() {
         }
     };
 
-    if (confirmationSent) {
+    if (success) {
         return (
             <div className="auth-split-screen">
                 <div className="auth-brand-panel">
@@ -67,9 +59,9 @@ export default function SignUpPage() {
                             <span className="brand-icon">BW</span>
                             <span className="brand-text">BagWeavers</span>
                         </div>
-                        <h1>Almost There!</h1>
+                        <h1>All Done!</h1>
                         <p className="auth-brand-tagline">
-                            Just one more step to unlock the world of handcrafted luxury bags.
+                            Your password has been updated. Welcome back to BagWeavers!
                         </p>
                     </div>
                     <div className="auth-brand-decoration"></div>
@@ -77,23 +69,22 @@ export default function SignUpPage() {
                 <div className="auth-form-panel">
                     <div className="auth-form-container">
                         <div style={{ textAlign: 'center' }}>
-                            <div style={{ marginBottom: '20px' }}>
-                                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.5">
-                                    <path d="M22 2L15 22l-4-9-9-4z" />
+                            <div className="auth-confirmation-icon auth-success-icon">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M8 12l3 3 5-5" />
                                 </svg>
                             </div>
-                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px' }}>Check Your Email</h1>
+                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px' }}>Password Reset!</h1>
                             <p className="auth-subtitle">
-                                We've sent a confirmation link to <strong>{formData.email}</strong>.
-                                Please click the link in the email to activate your account.
+                                Your password has been successfully updated.
                             </p>
-                            <button
-                                className="btn-auth-submit"
-                                onClick={() => navigate('/auth/signin')}
-                                style={{ marginTop: '1.5rem' }}
-                            >
-                                Go to Sign In
-                            </button>
+                            <p className="auth-confirmation-hint">
+                                Redirecting you to the homepage...
+                            </p>
+                            <div className="auth-redirect-bar">
+                                <div className="auth-redirect-progress"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,22 +100,18 @@ export default function SignUpPage() {
                         <span className="brand-icon">BW</span>
                         <span className="brand-text">BagWeavers</span>
                     </div>
-                    <h1>Join the Family!</h1>
+                    <h1>New Password</h1>
                     <p className="auth-brand-tagline">
-                        Create an account to explore handcrafted luxury bags and exclusive offers.
+                        Choose a strong password to keep your BagWeavers account secure.
                     </p>
                     <div className="auth-brand-features">
                         <div className="brand-feature">
-                            <span className="feature-icon">🎁</span>
-                            <span>Exclusive Member Offers</span>
+                            <span className="feature-icon">🔑</span>
+                            <span>Use 6+ Characters</span>
                         </div>
                         <div className="brand-feature">
-                            <span className="feature-icon">📦</span>
-                            <span>Track Your Orders</span>
-                        </div>
-                        <div className="brand-feature">
-                            <span className="feature-icon">❤️</span>
-                            <span>Save Your Wishlist</span>
+                            <span className="feature-icon">🛡️</span>
+                            <span>Mix Letters & Numbers</span>
                         </div>
                     </div>
                 </div>
@@ -141,51 +128,25 @@ export default function SignUpPage() {
                         Back to Home
                     </Link>
                     <div className="auth-header">
-                        <h2>Sign Up</h2>
-                        <p>Create your BagWeavers account</p>
+                        <div className="auth-icon-header">
+                            <div className="auth-lock-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C87533" strokeWidth="1.5">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                    <circle cx="12" cy="16" r="1" fill="#C87533" />
+                                    <line x1="12" y1="16" x2="12" y2="19" stroke="#C87533" strokeWidth="1.5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h2>Reset Password</h2>
+                        <p>Create a new password for your account</p>
                     </div>
 
                     {error && <div className="auth-error">{error}</div>}
 
                     <form onSubmit={handleSubmit} className="auth-form">
                         <div className="form-group">
-                            <label>Full Name</label>
-                            <input
-                                type="text"
-                                value={formData.name}
-                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                placeholder="John Doe"
-                                required
-                                disabled={submitting}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Email Address</label>
-                            <input
-                                type="email"
-                                value={formData.email}
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                placeholder="your@email.com"
-                                required
-                                disabled={submitting}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Phone Number</label>
-                            <input
-                                type="tel"
-                                value={formData.phone}
-                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                placeholder="9876543210"
-                                required
-                                disabled={submitting}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Password</label>
+                            <label>New Password</label>
                             <input
                                 type="password"
                                 value={formData.password}
@@ -193,16 +154,17 @@ export default function SignUpPage() {
                                 placeholder="At least 6 characters"
                                 required
                                 disabled={submitting}
+                                autoFocus
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Confirm Password</label>
+                            <label>Confirm New Password</label>
                             <input
                                 type="password"
                                 value={formData.confirmPassword}
                                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                                placeholder="Re-enter password"
+                                placeholder="Re-enter new password"
                                 required
                                 disabled={submitting}
                             />
@@ -212,16 +174,22 @@ export default function SignUpPage() {
                             {submitting ? (
                                 <span className="logout-spinner-wrap">
                                     <span className="logout-spinner"></span>
-                                    Creating Account...
+                                    Resetting...
                                 </span>
                             ) : (
-                                'Sign Up'
+                                'Reset Password'
                             )}
                         </button>
                     </form>
 
                     <p className="auth-footer">
-                        Already have an account? <Link to="/auth/signin">Sign In</Link>
+                        <Link to="/auth/signin" className="auth-back-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M19 12H5" />
+                                <polyline points="12 19 5 12 12 5" />
+                            </svg>
+                            Back to Sign In
+                        </Link>
                     </p>
                 </div>
             </div>

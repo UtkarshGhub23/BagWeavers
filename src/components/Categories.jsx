@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import CategoryCard from './CategoryCard';
 import { supabase } from '../lib/supabase';
+import { usePreferences } from '../context/PreferencesContext';
 
 export default function Categories() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { t } = usePreferences();
 
     useEffect(() => {
         async function fetchCategories() {
@@ -26,12 +28,12 @@ export default function Categories() {
         fetchCategories();
     }, []);
 
-    if (loading) return <div className="loading-container">Loading categories...</div>;
-    if (error) return <div className="error-message">Error: {error}</div>;
+    if (loading) return <div className="loading-container">{t('categories.loading')}</div>;
+    if (error) return <div className="error-message">{t('common.error')}: {error}</div>;
 
     return (
         <section className="categories-section" id="categories">
-            <h2 className="categories-title">Our Categories</h2>
+            <h2 className="categories-title">{t('categories.title')}</h2>
             <div className="categories-grid" id="categories-grid">
                 {categories.map((cat) => (
                     <CategoryCard key={cat.id} {...cat} />

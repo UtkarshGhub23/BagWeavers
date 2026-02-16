@@ -23,72 +23,62 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="hero" id="hero">
-            <div className="hero-container">
-
-                {/* Left: Text Content */}
-                <div className="hero-text-content">
-                    <h1 className="hero-title">
-                        Weaves of <span className="hero-w">Vrinda</span>
-                    </h1>
-                    <p className="hero-subtitle">
-                        {t('hero.discoverArt')} <br />
-                        <span className="highlight">{t('hero.handmadeElegance')}</span>
-                    </p>
-                    <p className="hero-description">
-                        {t('hero.description')}
-                    </p>
-
-                    <button className="hero-cta-btn mobile-only" onClick={() => navigate('/category/all')}>
-                        {t('common.shopNow')}
-                    </button>
-
-
-                    <div className="hero-contact">
-                        <a href="https://www.instagram.com/the.weavers_?igsh=bHM1OHExa3RkZG94" className="hero-instagram" target="_blank" rel="noreferrer">
-                            <div className="insta-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24">
-                                    <defs>
-                                        <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                                            <stop offset="0%" style={{ stopColor: '#f09433' }} />
-                                            <stop offset="25%" style={{ stopColor: '#e6683c' }} />
-                                            <stop offset="50%" style={{ stopColor: '#dc2743' }} />
-                                            <stop offset="75%" style={{ stopColor: '#cc2366' }} />
-                                            <stop offset="100%" style={{ stopColor: '#bc1888' }} />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="url(#insta-gradient)" strokeWidth="2" />
-                                    <circle cx="12" cy="12" r="5" fill="none" stroke="url(#insta-gradient)" strokeWidth="2" />
-                                    <circle cx="17.5" cy="6.5" r="1.5" fill="url(#insta-gradient)" />
-                                </svg>
-                            </div>
-                            <span>Weaves of Vrinda</span>
-                        </a>
-                        <a href="https://whatsapp.com/channel/0029VbBYaqa8vd1Vf8k0Yp0N" className="hero-whatsapp" target="_blank" rel="noreferrer">
-                            <div className="whatsapp-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="#25D366">
-                                    <path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.2-3.4-.7a11.4 11.4 0 01-4.6-4.1 5.1 5.1 0 01-1.1-2.7 3 3 0 01.9-2.2.9.9 0 01.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.9 2a.5.5 0 010 .5 2 2 0 01-.3.5c-.2.2-.3.3-.5.5s-.4.4-.2.8a11.3 11.3 0 002 2.5 9 9 0 002.9 1.8c.4.2.6.2.8-.1s1-1.1 1.2-1.5.4-.3.7-.2 1.8.9 2.1 1 .6.3.7.4a3 3 0 01-.1 1.4z" />
-                                </svg>
-                            </div>
-                            <span>WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-
-                {/* Right: Visual Carousel */}
-                <div className="hero-visual-content">
-                    <div className="carousel-frame">
+        <section className="hero-premium" id="hero">
+            <div className="hero-bg-accent"></div>
+            <div className="hero-container-premium">
+                {/* Visual Content - Layered background */}
+                <div className="hero-visual-premium">
+                    <div className="premium-carousel-wrap">
                         {heroImages.map((img, index) => (
                             <div
                                 key={img}
-                                className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
+                                className={`premium-slide ${index === currentImageIndex ? 'active' : ''}`}
                                 style={{ backgroundImage: `url(${img})` }}
-                            ></div>
+                            >
+                                <div className="slide-overlay"></div>
+                            </div>
                         ))}
                     </div>
-                    {/* Decorative floating elements */}
-                    <div className="float-shape shape-1"></div>
-                    <div className="float-shape shape-2"></div>
+                    {/* Decorative Elements */}
+                    <div className="hero-blob blob-1"></div>
+                    <div className="hero-blob blob-2"></div>
+                </div>
+
+                {/* Text Content */}
+                <div className="hero-content-premium">
+                    <div className="hero-badge-wrap">
+                        <span className="hero-badge">{t('header.handmadeCollection')}</span>
+                    </div>
+                    <h1 className="hero-title-premium">
+                        Weaves of <span className="hero-gradient-text">Vrinda</span>
+                    </h1>
+                    <p className="hero-subtitle-premium">
+                        {t('hero.discoverArt')} <br />
+                        <span className="hero-highlight">{t('hero.handmadeElegance')}</span>
+                    </p>
+                    <p className="hero-desc-premium">
+                        {t('hero.description')}
+                    </p>
+
+                    <div className="hero-actions-premium">
+                        <button className="premium-cta-btn" onClick={() => navigate('/category/all')}>
+                            {t('common.shopNow')}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div className="hero-social-premium">
+                        <a href="https://www.instagram.com/the.weavers_?igsh=bHM1OHExa3RkZG94" className="premium-social-link" target="_blank" rel="noreferrer">
+                            <span className="social-label">Instagram</span>
+                        </a>
+                        <div className="social-divider"></div>
+                        <a href="https://whatsapp.com/channel/0029VbBYaqa8vd1Vf8k0Yp0N" className="premium-social-link" target="_blank" rel="noreferrer">
+                            <span className="social-label">WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

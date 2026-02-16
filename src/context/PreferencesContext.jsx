@@ -66,6 +66,21 @@ const translations = {
         hi: 'कुछ भी खोजें...',
         mr: 'काहीही शोधा...',
     },
+    'header.home': {
+        en: 'Home',
+        hi: 'होम',
+        mr: 'मुख्य',
+    },
+    'header.wishlist': {
+        en: 'Wishlist',
+        hi: 'विशलिस्ट',
+        mr: 'विशलिस्ट',
+    },
+    'header.cart': {
+        en: 'Cart',
+        hi: 'कार्ट',
+        mr: 'कार्ट',
+    },
 
     // ── Menu Bar ──
     'menu.allCollections': {
@@ -616,6 +631,11 @@ const translations = {
         en: 'Loading...',
         hi: 'लोड हो रहा है...',
         mr: 'लोड होत आहे...',
+    },
+    'common.shopNow': {
+        en: 'Shop Now',
+        hi: 'अभी खरीदें',
+        mr: 'आता खरेदी करा',
     },
 };
 

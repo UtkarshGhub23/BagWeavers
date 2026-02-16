@@ -6410,7 +6410,6 @@ ul {
     display: flex;
     min-height: 100vh;
     width: 100%;
-    overflow: hidden;
 }
 
 /* --- Brand Panel (Left) --- */
@@ -6792,6 +6791,8 @@ ul {
 @media (max-width: 900px) {
     .auth-split-screen {
         flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .auth-brand-panel {
@@ -6799,7 +6800,11 @@ ul {
     }
 
     .auth-form-panel {
-        padding: 20px;
+        padding: 40px 24px 80px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .support-contact-grid {

@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -7351,6 +7352,7 @@ rect,
 .theme-btn[title="System Preference"]:hover {
     box-shadow: 0 0 15px rgba(142, 142, 147, 0.4);
 }
+
 /* ===== Social Login Styles ===== */
 .auth-social-separator {
     display: flex;

@@ -56,12 +56,12 @@ export default function ResetPasswordPage() {
                 <div className="auth-brand-panel">
                     <div className="auth-brand-content">
                         <div className="auth-brand-logo">
-                            <span className="brand-icon">BW</span>
-                            <span className="brand-text">BagWeavers</span>
+                            <span className="brand-icon">WV</span>
+                            <span className="brand-text">Weaves of Vrinda</span>
                         </div>
                         <h1>All Done!</h1>
                         <p className="auth-brand-tagline">
-                            Your password has been updated. Welcome back to BagWeavers!
+                            Your password has been updated. Welcome back to Weaves of Vrinda!
                         </p>
                     </div>
                     <div className="auth-brand-decoration"></div>

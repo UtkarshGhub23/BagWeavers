@@ -41,8 +41,8 @@ export default function SignInPage() {
             <div className="auth-brand-panel">
                 <div className="auth-brand-content">
                     <div className="auth-brand-logo">
-                        <span className="brand-icon">BW</span>
-                        <span className="brand-text">BagWeavers</span>
+                        <span className="brand-icon">WV</span>
+                        <span className="brand-text">Weaves of Vrinda</span>
                     </div>
                     <h1>Welcome Back!</h1>
                     <p className="auth-brand-tagline">

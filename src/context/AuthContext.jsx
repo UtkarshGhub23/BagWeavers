@@ -127,7 +127,7 @@ export function AuthProvider({ children }) {
 
     const resetPassword = async (email) => {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: `${window.location.origin}/BagWeavers/auth/reset-password`,
+            redirectTo: `${window.location.origin}/auth/reset-password`,
         });
         return { error };
     };

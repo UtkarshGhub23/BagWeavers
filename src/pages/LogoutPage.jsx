@@ -58,8 +58,8 @@ export default function LogoutPage() {
             <div className="auth-brand-panel">
                 <div className="auth-brand-content">
                     <div className="auth-brand-logo">
-                        <span className="brand-icon">BW</span>
-                        <span className="brand-text">BagWeavers</span>
+                        <span className="brand-icon">WV</span>
+                        <span className="brand-text">Weaves of Vrinda</span>
                     </div>
                     <h1>See You Soon!</h1>
                     <p className="auth-brand-tagline">
@@ -97,7 +97,7 @@ export default function LogoutPage() {
                             </svg>
                         </div>
                         <h1>Leaving So Soon?</h1>
-                        <p className="auth-subtitle">Are you sure you want to sign out of your BagWeavers account?</p>
+                        <p className="auth-subtitle">Are you sure you want to sign out of your Weaves of Vrinda account?</p>
 
                         <div className="logout-actions">
                             <button

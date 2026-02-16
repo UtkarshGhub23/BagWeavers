@@ -31,7 +31,7 @@ export default function SupportPage() {
         },
         {
             q: 'Are your bags genuinely handmade?',
-            a: 'Yes! Every BagWeavers product is handcrafted by skilled artisans in Mathura, Uttar Pradesh. Each bag is unique and crafted with premium quality materials.'
+            a: 'Yes! Every Weaves of Vrinda product is handcrafted by skilled artisans in Mathura, Uttar Pradesh. Each bag is unique and crafted with premium quality materials.'
         },
         {
             q: 'Can I get a custom bag design?',
@@ -78,7 +78,7 @@ export default function SupportPage() {
                         <h3>WhatsApp</h3>
                         <p className="support-card-detail">+91 9568555951</p>
                         <p className="support-card-time">Quick response within 30 mins</p>
-                        <a href="https://wa.me/919568555951?text=Hi%20BagWeavers%2C%20I%20need%20help%20with%20my%20order" target="_blank" rel="noreferrer" className="support-card-action">Chat on WhatsApp →</a>
+                        <a href="https://wa.me/919568555951?text=Hi%20Weaves%20of%20Vrinda%2C%20I%20need%20help%20with%20my%20order" target="_blank" rel="noreferrer" className="support-card-action">Chat on WhatsApp →</a>
                     </div>
 
                     <div className="support-contact-card">
@@ -89,9 +89,9 @@ export default function SupportPage() {
                             </svg>
                         </div>
                         <h3>Email Us</h3>
-                        <p className="support-card-detail">support@bagweavers.com</p>
+                        <p className="support-card-detail">support@vrindopnishad.in</p>
                         <p className="support-card-time">We reply within 24 hours</p>
-                        <a href="mailto:support@bagweavers.com" className="support-card-action">Send Email →</a>
+                        <a href="mailto:support@vrindopnishad.in" className="support-card-action">Send Email →</a>
                     </div>
 
                     <div className="support-contact-card">
@@ -112,7 +112,7 @@ export default function SupportPage() {
                 <section className="support-team-section">
                     <div className="support-section-header">
                         <h2>Meet Our Support Team</h2>
-                        <p>Dedicated professionals committed to making your BagWeavers experience perfect.</p>
+                        <p>Dedicated professionals committed to making your Weaves of Vrinda experience perfect.</p>
                     </div>
                     <div className="support-team-grid">
                         <div className="support-team-card">
@@ -123,7 +123,7 @@ export default function SupportPage() {
                             </div>
                             <h4>Utkarsh Tripathi</h4>
                             <span className="support-team-role">Founder & Lead</span>
-                            <p>Oversees all operations, product quality, and strategic direction of BagWeavers.</p>
+                            <p>Oversees all operations, product quality, and strategic direction of Weaves of Vrinda.</p>
                         </div>
                         <div className="support-team-card">
                             <div className="support-team-avatar">

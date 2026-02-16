@@ -22,7 +22,7 @@ export default function Footer() {
                                 <line x1="27" y1="30" x2="33" y2="30" stroke="#333" strokeWidth="2" />
                             </svg>
                             <span className="footer-logo-text">
-                                Bag<i>Weavers</i>
+                                Weaves of <i>Vrinda</i>
                             </span>
                         </div>
                         <p className="footer-tagline">
@@ -141,7 +141,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="footer-copyright">
-                        <p>© 2026 BagWeavers. All rights reserved.</p>
+                        <p>© 2026 Weaves of Vrinda. Part of Vrindopnishad. All rights reserved.</p>
                     </div>
                 </div>
             </div>

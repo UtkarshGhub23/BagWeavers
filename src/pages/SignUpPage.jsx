@@ -64,8 +64,8 @@ export default function SignUpPage() {
                 <div className="auth-brand-panel">
                     <div className="auth-brand-content">
                         <div className="auth-brand-logo">
-                            <span className="brand-icon">BW</span>
-                            <span className="brand-text">BagWeavers</span>
+                            <span className="brand-icon">WV</span>
+                            <span className="brand-text">Weaves of Vrinda</span>
                         </div>
                         <h1>Almost There!</h1>
                         <p className="auth-brand-tagline">
@@ -142,7 +142,7 @@ export default function SignUpPage() {
                     </Link>
                     <div className="auth-header">
                         <h2>Sign Up</h2>
-                        <p>Create your BagWeavers account</p>
+                        <p>Create your Weaves of Vrinda account</p>
                     </div>
 
                     {error && <div className="auth-error">{error}</div>}

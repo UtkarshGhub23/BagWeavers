@@ -39,8 +39,8 @@ export default function ForgotPasswordPage() {
                 <div className="auth-brand-panel">
                     <div className="auth-brand-content">
                         <div className="auth-brand-logo">
-                            <span className="brand-icon">BW</span>
-                            <span className="brand-text">BagWeavers</span>
+                            <span className="brand-icon">WV</span>
+                            <span className="brand-text">Weaves of Vrinda</span>
                         </div>
                         <h1>Check Your Inbox</h1>
                         <p className="auth-brand-tagline">

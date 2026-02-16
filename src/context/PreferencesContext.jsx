@@ -66,6 +66,11 @@ const translations = {
         hi: 'कुछ भी खोजें...',
         mr: 'काहीही शोधा...',
     },
+    'header.popularSearches': {
+        en: 'Popular Searches:',
+        hi: 'लोकप्रिय खोज:',
+        mr: 'लोकप्रिय शोध:',
+    },
     'header.home': {
         en: 'Home',
         hi: 'होम',

@@ -76,10 +76,12 @@ export default function Header() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
                 {/* Scroll Progress Indicator */}
-                <motion.div
-                    className="scroll-progress-indicator"
-                    style={{ scaleX, transformOrigin: "0%" }}
-                />
+                {!mobileMenuOpen && (
+                    <motion.div
+                        className="scroll-progress-indicator"
+                        style={{ scaleX, transformOrigin: "0%" }}
+                    />
+                )}
 
                 <div className="reference-header-container">
                     {/* Left: Burger(Mobile) + Logo */}
@@ -92,11 +94,12 @@ export default function Header() {
                             <Menu size={24} />
                         </motion.button>
 
-                        <Link to="/" className="header-logo-link">
-                            <motion.div
-                                className="header-logo-icon"
-                                whileHover={{ scale: 1.05 }}
-                            >
+                        <motion.a
+                            href="/"
+                            className="header-logo-link"
+                            whileHover={{ scale: 1.05 }}
+                        >
+                            <div className="header-logo-icon">
                                 <svg viewBox="0 0 60 60" width="32" height="32">
                                     <circle cx="30" cy="30" r="28" fill="#f5e642" stroke="#ccc" strokeWidth="1" />
                                     <circle cx="30" cy="30" r="22" fill="#fff" opacity="0.5" />
@@ -106,8 +109,8 @@ export default function Header() {
                                     <line x1="27" y1="30" x2="33" y2="30" stroke="#333" strokeWidth="2" />
                                 </svg>
                                 <span className="header-brand-name">Weaves of Vrinda</span>
-                            </motion.div>
-                        </Link>
+                            </div>
+                        </motion.a>
 
                         <nav className="header-ecosystem-links desktop-only">
                             <a href="https://vrindopnishad.in" className="ecosystem-link" target="_blank" rel="noreferrer">Vrindopnishad Portal</a>
@@ -248,7 +251,7 @@ export default function Header() {
                                 </motion.button>
                             </div>
                             <div className="search-hints">
-                                <span>{t('header.popularSearches')}:</span>
+                                <span>{t('header.popularSearches')}</span>
                                 <button onClick={() => setSearchQuery('Handbags')}>Handbags</button>
                                 <button onClick={() => setSearchQuery('Backpacks')}>Backpacks</button>
                             </div>

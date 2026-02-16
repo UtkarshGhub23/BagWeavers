@@ -169,11 +169,22 @@ export function AuthProvider({ children }) {
         }
         : null;
 
+    const signInWithOAuth = async (provider) => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider,
+            options: {
+                redirectTo: `${window.location.origin}/`,
+            },
+        });
+        return { error };
+    };
+
     const value = {
         user: currentUser,
         loading,
         signIn,
         signUp,
+        signInWithOAuth,
         signOut,
         resetPassword,
         updatePassword,

@@ -34,9 +34,16 @@ export default function Categories() {
     return (
         <section className="categories-section" id="categories">
             <h2 className="categories-title">{t('categories.title')}</h2>
-            <div className="categories-grid" id="categories-grid">
+            <div className="categories-grid desktop-only" id="categories-grid">
                 {categories.map((cat) => (
                     <CategoryCard key={cat.id} {...cat} />
+                ))}
+            </div>
+            <div className="h-scroll-container mobile-only">
+                {categories.map((cat) => (
+                    <div key={cat.id} className="h-scroll-item">
+                        <CategoryCard {...cat} />
+                    </div>
                 ))}
             </div>
         </section>

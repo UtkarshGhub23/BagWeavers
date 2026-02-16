@@ -58,6 +58,25 @@ export default function SignUpPage() {
         }
     };
 
+    const handleSocialLogin = async (provider) => {
+        setError('');
+        setSubmitting(true);
+        try {
+            const { error } = await signInWithOAuth(provider);
+            if (error) {
+                if (error.message?.includes('provider is not enabled')) {
+                    setError(`Google Sign-in is not yet enabled in your Supabase Dashboard. Please go to Auth > Providers to turn it on.`);
+                } else {
+                    setError(error.message || `Failed to sign in with ${provider}`);
+                }
+            }
+        } catch (err) {
+            setError(`An error occurred during ${provider} sign in.`);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
     if (confirmationSent) {
         return (
             <div className="auth-split-screen">
@@ -225,7 +244,7 @@ export default function SignUpPage() {
                     <div className="auth-social-group">
                         <button
                             className="btn-social-auth google"
-                            onClick={() => signInWithOAuth('google')}
+                            onClick={() => handleSocialLogin('google')}
                             disabled={submitting}
                         >
                             <svg viewBox="0 0 24 24">
@@ -238,7 +257,7 @@ export default function SignUpPage() {
                         </button>
                         <button
                             className="btn-social-auth facebook"
-                            onClick={() => signInWithOAuth('facebook')}
+                            onClick={() => handleSocialLogin('facebook')}
                             disabled={submitting}
                         >
                             <svg viewBox="0 0 24 24">
@@ -248,7 +267,7 @@ export default function SignUpPage() {
                         </button>
                         <button
                             className="btn-social-auth apple"
-                            onClick={() => signInWithOAuth('apple')}
+                            onClick={() => handleSocialLogin('apple')}
                             disabled={submitting}
                         >
                             <svg viewBox="0 0 24 24">

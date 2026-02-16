@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePreferences } from '../context/PreferencesContext';
 
 const heroImages = [
@@ -12,6 +13,7 @@ const heroImages = [
 export default function Hero() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { t } = usePreferences();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -36,6 +38,10 @@ export default function Hero() {
                     <p className="hero-description">
                         {t('hero.description')}
                     </p>
+
+                    <button className="hero-cta-btn mobile-only" onClick={() => navigate('/category/all')}>
+                        {t('common.shopNow')}
+                    </button>
 
 
                     <div className="hero-contact">

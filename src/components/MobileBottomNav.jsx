@@ -15,7 +15,7 @@ export default function MobileBottomNav() {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="mobile-bottom-nav">
+        <nav className="mobile-bottom-nav glass">
             <Link to="/" className={`bottom-nav-item ${isActive('/') ? 'active' : ''}`}>
                 <Home size={22} />
                 <span>{t('header.home')}</span>

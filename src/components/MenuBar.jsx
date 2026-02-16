@@ -5,7 +5,7 @@ export default function MenuBar() {
     const { t } = usePreferences();
 
     return (
-        <nav className="menu-bar">
+        <nav className="menu-bar desktop-only">
             <div className="menu-bar-container">
                 <div className="menu-bar-left">
                     <Link to="/" className="menu-bar-brand">

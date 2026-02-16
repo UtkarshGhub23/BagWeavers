@@ -60,7 +60,7 @@ export default function Header() {
 
     return (
         <>
-            <header className={`reference-header ${scrolled ? 'scrolled' : ''}`}>
+            <header className={`reference-header glass ${scrolled ? 'scrolled' : ''}`}>
                 <div className="reference-header-container">
                     {/* Left: Burger(Mobile) + Logo + Collection Text */}
                     <div className="header-left">

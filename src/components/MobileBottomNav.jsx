@@ -37,7 +37,7 @@ export default function MobileBottomNav() {
                 </div>
                 <span>{t('header.cart')}</span>
             </Link>
-            <Link to={user ? "/settings" : "/signin"} className={`bottom-nav-item-premium ${isActive('/settings') || isActive('/signin') ? 'active' : ''}`}>
+            <Link to={user ? "/settings" : "/auth/signin"} className={`bottom-nav-item-premium ${isActive('/settings') || isActive('/auth/signin') ? 'active' : ''}`}>
                 <div className="nav-icon-wrap"><User size={22} /></div>
                 <span>{user ? t('header.account') : t('header.signIn')}</span>
             </Link>

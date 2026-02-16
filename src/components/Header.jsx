@@ -205,7 +205,7 @@ export default function Header() {
                         ) : (
                             <motion.button
                                 className="header-signin-btn"
-                                onClick={() => navigate('/signin')}
+                                onClick={() => navigate('/auth/signin')}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -327,7 +327,7 @@ export default function Header() {
                                             <span>{t('header.account')}</span>
                                         </Link>
                                     ) : (
-                                        <Link to="/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-auth-btn">
+                                        <Link to="/auth/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-auth-btn">
                                             {t('header.signIn')}
                                         </Link>
                                     )}

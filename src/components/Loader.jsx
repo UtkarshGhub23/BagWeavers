@@ -13,9 +13,14 @@ export default function Loader() {
     return (
         <div className="loader-overlay">
             <div className="loader">
-                <svg viewBox="0 0 80 80">
-                    <rect x="8" y="8" width="64" height="64"></rect>
-                </svg>
+                <span><span></span><span></span><span></span><span></span></span>
+                <div className="base">
+                    <span></span>
+                    <div className="face"></div>
+                </div>
+            </div>
+            <div className="longfazers">
+                <span></span><span></span><span></span><span></span>
             </div>
             <p className="loader-text">Loading...</p>
         </div>

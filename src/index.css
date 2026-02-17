@@ -361,23 +361,26 @@ ul {
 }
 
 .header-search-icon-btn {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--text-main);
-    border: none;
+    background: transparent;
+    border: 1px solid var(--border-base);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    transition: all 0.2s ease;
+    color: var(--text-main);
+    transition: all 0.3s var(--transition);
 }
 
 .header-search-icon-btn:hover {
-    background: var(--text-main);
+    background: var(--bg-body);
+    border-color: var(--brown-accent);
+    color: var(--brown-accent);
     transform: scale(1.05);
 }
+
 
 /* Right Section: Icons + User */
 .header-right {
@@ -1375,64 +1378,6 @@ ul {
     color: var(--black);
 }
 
-.mobile-drawer {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 85%;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--bg-card);
-    z-index: 2500;
-    transition: left 0.4s var(--transition);
-    padding: 30px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.15);
-}
-
-.mobile-drawer.active {
-    left: 0;
-}
-
-.mobile-drawer-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 2050;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-}
-
-.mobile-drawer-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.mobile-nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-main);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.mobile-nav-link:hover {
-    color: var(--brown-accent);
-}
-
 @media (max-width: 1024px) {
     .header-burger-btn {
         display: flex;
@@ -1445,10 +1390,6 @@ ul {
     }
 
     .header-collection-text {
-        display: none;
-    }
-
-    .header-center {
         display: none;
     }
 
@@ -8448,9 +8389,9 @@ rect,
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(4px);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 2050;
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease;

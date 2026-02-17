@@ -101,12 +101,12 @@ export default function Header() {
                         >
                             <div className="header-logo-icon">
                                 <svg viewBox="0 0 60 60" width="32" height="32">
-                                    <circle cx="30" cy="30" r="28" fill="#f5e642" stroke="#ccc" strokeWidth="1" />
-                                    <circle cx="30" cy="30" r="22" fill="#fff" opacity="0.5" />
-                                    <rect x="18" y="18" width="24" height="20" rx="3" fill="none" stroke="#333" strokeWidth="2" />
-                                    <path d="M22 18 Q22 10 30 10 Q38 10 38 18" fill="none" stroke="#333" strokeWidth="2" />
-                                    <line x1="30" y1="24" x2="30" y2="30" stroke="#333" strokeWidth="2" />
-                                    <line x1="27" y1="30" x2="33" y2="30" stroke="#333" strokeWidth="2" />
+                                    <circle cx="30" cy="30" r="28" fill="#f5e642" stroke="var(--border-base)" strokeWidth="1" />
+                                    <circle cx="30" cy="30" r="22" fill="var(--bg-card)" opacity="0.5" />
+                                    <rect x="18" y="18" width="24" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
+                                    <path d="M22 18 Q22 10 30 10 Q38 10 38 18" fill="none" stroke="currentColor" strokeWidth="2" />
+                                    <line x1="30" y1="24" x2="30" y2="30" stroke="currentColor" strokeWidth="2" />
+                                    <line x1="27" y1="30" x2="33" y2="30" stroke="currentColor" strokeWidth="2" />
                                 </svg>
                                 <span className="header-brand-name">Weaves of Vrinda</span>
                             </div>

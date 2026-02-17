@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { usePreferences } from '../context/PreferencesContext';
@@ -19,7 +19,15 @@ export default function AccountPage() {
     const { user, isAuthenticated, updateProfile, updatePassword, signOut } = useAuth();
     const { theme, setTheme } = useTheme();
     const { currency, setCurrency, language, setLanguage, t } = usePreferences();
+    const [searchParams] = useSearchParams();
     const [activeSection, setActiveSection] = useState('account');
+
+    useEffect(() => {
+        const tab = searchParams.get('tab');
+        if (tab && SECTIONS.some(s => s.id === tab)) {
+            setActiveSection(tab);
+        }
+    }, [searchParams]);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
         name: user?.name || '',

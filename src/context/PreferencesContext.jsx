@@ -56,6 +56,16 @@ const translations = {
         hi: 'सहायता',
         mr: 'मदत',
     },
+    'header.myOrders': {
+        en: 'My Orders',
+        hi: 'मेरे ऑर्डर',
+        mr: 'माझे ऑर्डर',
+    },
+    'header.settings': {
+        en: 'Settings',
+        hi: 'सेटिंग्स',
+        mr: 'सेटिंग्ज',
+    },
     'header.logout': {
         en: 'Logout',
         hi: 'लॉगआउट',

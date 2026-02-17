@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
 import { usePreferences } from '../context/PreferencesContext';
-import { X, ChevronRight, User, Search, ShoppingBag, Heart, Menu } from 'lucide-react';
+import { X, ChevronRight, User, Search, ShoppingBag, Heart, Menu, Package, Settings, HelpCircle } from 'lucide-react';
 
 export default function Header() {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -193,11 +193,33 @@ export default function Header() {
                                                 <span>{t('header.account')}</span>
                                             </button>
 
+                                            <button className="header-dropdown-item" onClick={() => handleDropdownNav('/account?tab=orders')}>
+                                                <Package size={18} />
+                                                <span>{t('header.myOrders')}</span>
+                                            </button>
+
+                                            <button className="header-dropdown-item" onClick={() => handleDropdownNav('/wishlist')}>
+                                                <Heart size={18} />
+                                                <span>{t('header.wishlist')}</span>
+                                            </button>
+
+                                            <button className="header-dropdown-item" onClick={() => handleDropdownNav('/account?tab=preferences')}>
+                                                <Settings size={18} />
+                                                <span>{t('header.settings')}</span>
+                                            </button>
+
+                                            <button className="header-dropdown-item" onClick={() => handleDropdownNav('/contact')}>
+                                                <HelpCircle size={18} />
+                                                <span>{t('header.support')}</span>
+                                            </button>
+
                                             <div className="header-dropdown-divider"></div>
 
-                                            <button className="dropdown-logout-btn" onClick={() => signOut()}>
-                                                {t('header.logout')}
-                                            </button>
+                                            <div className="dropdown-logout-wrap">
+                                                <button className="dropdown-logout-btn" onClick={() => signOut()}>
+                                                    {t('header.logout')}
+                                                </button>
+                                            </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

@@ -65,20 +65,37 @@
 }
 
 [data-theme="dark"] {
+    /* ── Luxury Deep Dark Palette ── */
     --primary: #B59F94;
     --primary-hover: #D6C7C0;
-    --bg-body: #121212;
-    --bg-card: #1E1E1E;
-    --text-main: #E5E7EB;
-    --text-muted: #9CA3AF;
-    --border-base: #333333;
-    --accent-red: #EF4444;
+    --bg-body: #0A0A0B;
+    /* Deepest midnight black */
+    --bg-card: #141415;
+    /* Soft slate card background */
+    --text-main: #F5F5F7;
+    /* Apple-style soft white text */
+    --text-muted: #A1A1A6;
+    /* Subtle grey text */
+    --border-base: rgba(255, 255, 255, 0.08);
+    --accent-red: #FF453A;
+    --accent-gold: #D4AF37;
 
-    --glass-bg: rgba(30, 30, 30, 0.8);
+    /* Legacy/Direct Colors (Updated for deep dark) */
+    --white: #0A0A0B;
+    --black: #F5F5F7;
+    --brown-accent: #B59F94;
+    --gray-bg: #0A0A0B;
+    --gray-light: #1C1C1E;
+
+    /* Glassmorphism - Deeper & Richer */
+    --glass-bg: rgba(20, 20, 21, 0.85);
     --glass-border: rgba(255, 255, 255, 0.05);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --white: #E5E7EB;
-    --black: #121212;
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+    --premium-gradient: linear-gradient(135deg, #1A1A1B 0%, #0A0A0B 100%);
+    --accent-gradient: linear-gradient(90deg, #B59F94, #D4AF37, #B59F94);
+
+    color-scheme: dark;
 }
 
 html {
@@ -623,7 +640,7 @@ ul {
 }
 
 [data-theme="dark"] .hero-premium {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .hero-title-premium {
@@ -639,9 +656,9 @@ ul {
 }
 
 [data-theme="dark"] .premium-cta-btn {
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--text-main) !important;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    background: var(--text-main);
+    color: var(--bg-body) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .premium-cta-btn:hover {
@@ -7067,44 +7084,23 @@ rect,
 }
 
 [data-theme="dark"] {
-    /* ── Luxury Dark Palette ── */
-    --white: #121212;
-    /* Deep background */
-    --black: #F5F5F7;
-    /* Soft white text */
-    --gray-bg: #000000;
-    /* Pure black for contrast */
-    --gray-light: #1C1C1E;
-    /* Secondary background */
-    --text-dark: #E1E1E1;
-    /* Primary text */
-    --text-medium: #A1A1A6;
-    /* Secondary text */
-    --text-light: #6E6E73;
-    /* Tertiary text */
-
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.7);
-
+    /* Variables are now primarily handled at the root. 
+       This block handles specific structural overrides. */
     color-scheme: dark;
 }
 
 /* ── Body ── */
 [data-theme="dark"] body {
-    background: #050505;
-    /* Deep rich black */
-    color: var(--text-dark);
+    background: var(--bg-body);
+    color: var(--text-main);
 }
 
 /* ── Header ── */
 [data-theme="dark"] .reference-header {
-    background: rgba(5, 5, 5, 0.85);
-    /* Deep black glass */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    /* Subtle border */
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom: 1px solid var(--glass-border);
 }
 
 [data-theme="dark"] .header-brand-name {
@@ -7116,11 +7112,13 @@ rect,
 }
 
 [data-theme="dark"] .header-search-icon-btn {
-    background: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .header-search-icon-btn:hover {
-    background: #3a3a3a;
+    background: var(--primary);
+    color: white;
 }
 
 [data-theme="dark"] .header-icon-btn {
@@ -7144,52 +7142,23 @@ rect,
 
 /* ── Search Overlay ── */
 [data-theme="dark"] .search-overlay-content {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--bg-body);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .search-input-wrapper input {
-    background: var(--text-main);
-    color: var(--border-base);
-    border-color: var(--text-main);
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-color: var(--border-base);
 }
 
-[data-theme="dark"] .search-input-wrapper input:focus {
-    border-color: var(--primary);
-}
-
-/* ── Menu Bar ── */
-[data-theme="dark"] .menu-bar {
-    background: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="dark"] .menu-link {
-    color: #A1A1A6;
-    font-weight: 500;
-}
-
-[data-theme="dark"] .menu-link:hover,
-[data-theme="dark"] .menu-link.active {
-    color: #F5F5F7;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-[data-theme="dark"] .menu-bar-brand svg {
-    color: var(--primary);
-    filter: drop-shadow(0 0 8px rgba(200, 117, 51, 0.4));
-}
-
-/* ── Hero ── */
 [data-theme="dark"] .hero {
-    background: linear-gradient(135deg, var(--text-main) 0%, var(--text-main) 100%);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .hero-title,
 [data-theme="dark"] .hero-subtitle {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 /* ── Section headings ── */
@@ -7205,8 +7174,8 @@ rect,
 
 /* ── Product Cards ── */
 [data-theme="dark"] .product-card {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--bg-card);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .product-card:hover {
@@ -7240,7 +7209,7 @@ rect,
 
 /* ── Product Detail ── */
 [data-theme="dark"] .product-detail-section {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .product-detail-name {
@@ -7291,67 +7260,67 @@ rect,
 
 /* ── Cart ── */
 [data-theme="dark"] .cart-main {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .cart-item {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--bg-card);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .cart-item-name {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .cart-item-price {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .cart-summary {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--bg-card);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .cart-summary h3,
 [data-theme="dark"] .cart-total-label,
 [data-theme="dark"] .cart-total-value {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .cart-summary-row {
     color: var(--text-muted);
-    border-color: var(--text-main);
+    border-color: var(--border-base);
 }
 
 /* ── Checkout ── */
 [data-theme="dark"] .checkout-page {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .checkout-section {
-    background: #121212;
-    border: 1px solid #1F1F1F;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    background: var(--bg-card);
+    border: 1px solid var(--border-base);
+    box-shadow: var(--shadow-lg);
 }
 
 [data-theme="dark"] .checkout-section h2,
 [data-theme="dark"] .checkout-section h3 {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .checkout-section input,
 [data-theme="dark"] .checkout-section select,
 [data-theme="dark"] .checkout-section textarea {
-    background: var(--text-main);
-    color: var(--border-base);
-    border-color: var(--text-main);
+    background: var(--bg-body);
+    color: var(--text-main);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .checkout-section input:focus,
 [data-theme="dark"] .checkout-section select:focus,
 [data-theme="dark"] .checkout-section textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(200, 117, 51, 0.15);
+    box-shadow: 0 0 0 4px rgba(181, 159, 148, 0.15);
     background: #000;
 }
 
@@ -7375,12 +7344,12 @@ rect,
 
 /* ── Wishlist ── */
 [data-theme="dark"] .wishlist-page {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .wishlist-page h1,
 [data-theme="dark"] .wishlist-page h2 {
-    color: var(--border-base);
+    color: var(--text-main);
 }
 
 /* ── Support Page ── */
@@ -7427,7 +7396,7 @@ rect,
 
 [data-theme="dark"] .support-faq-item.open {
     border-color: var(--primary);
-    background: #1C1C1E;
+    background: var(--bg-card);
 }
 
 [data-theme="dark"] .support-faq-question span {
@@ -7537,13 +7506,13 @@ rect,
 
 /* ── Settings Page ── */
 [data-theme="dark"] .settings-page {
-    background: linear-gradient(180deg, var(--text-main) 0%, #121212 50%);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .settings-sidebar {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    background: var(--bg-card);
+    border-color: var(--border-base);
+    box-shadow: var(--shadow-lg);
 }
 
 [data-theme="dark"] .settings-sidebar-header {
@@ -7581,9 +7550,9 @@ rect,
 }
 
 [data-theme="dark"] .settings-card {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    background: var(--bg-card);
+    border-color: var(--border-base);
+    box-shadow: var(--shadow-sm);
 }
 
 [data-theme="dark"] .settings-card-top {
@@ -7624,9 +7593,9 @@ rect,
 
 [data-theme="dark"] .settings-form-group input,
 [data-theme="dark"] .settings-form-group select {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    color: var(--border-base);
+    background: var(--bg-body);
+    border-color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .settings-form-group input:focus,
@@ -7652,7 +7621,7 @@ rect,
 }
 
 [data-theme="dark"] .settings-toggle-slider {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .settings-action-btn {
@@ -7661,7 +7630,7 @@ rect,
 }
 
 [data-theme="dark"] .settings-action-btn:hover {
-    background: var(--text-main);
+    background: var(--bg-body);
     border-color: var(--primary);
     color: var(--primary);
 }
@@ -7782,13 +7751,13 @@ rect,
 
 /* ── Account Page (sign-in-required state) ── */
 [data-theme="dark"] .account-page {
-    background: linear-gradient(180deg, var(--text-main) 0%, #121212 50%);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .account-card {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    background: var(--bg-card);
+    border-color: var(--border-base);
+    box-shadow: var(--shadow-lg);
 }
 
 [data-theme="dark"] .account-card h2 {
@@ -7804,31 +7773,33 @@ rect,
 }
 
 [data-theme="dark"] .account-form .form-group input {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    color: var(--border-base);
+    background: var(--bg-body);
+    border-color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .account-form .form-group input:focus {
     border-color: var(--primary);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .account-action-item {
-    background: var(--text-main);
+    background: var(--bg-card);
     color: var(--text-muted);
 }
 
 [data-theme="dark"] .account-action-item:hover {
-    background: var(--text-main);
+    background: var(--bg-card);
+    border-color: var(--primary);
 }
 
 /* ── Auth Pages ── */
 [data-theme="dark"] .auth-split-screen {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .auth-form-panel {
-    background: #121212;
+    background: var(--bg-card);
 }
 
 [data-theme="dark"] .auth-form-container {
@@ -7848,13 +7819,14 @@ rect,
 }
 
 [data-theme="dark"] .auth-form .form-group input {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    color: var(--border-base);
+    background: var(--bg-body);
+    border-color: var(--border-base);
+    color: var(--text-main);
 }
 
 [data-theme="dark"] .auth-form .form-group input:focus {
     border-color: var(--primary);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .auth-back-home {
@@ -7871,16 +7843,16 @@ rect,
 
 /* ── Support Page ── */
 [data-theme="dark"] .support-page {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .support-hero {
-    background: linear-gradient(135deg, var(--text-main) 0%, var(--text-main) 100%);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .support-card {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--bg-card);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .support-card h3 {
@@ -7894,9 +7866,9 @@ rect,
 [data-theme="dark"] .support-form input,
 [data-theme="dark"] .support-form textarea,
 [data-theme="dark"] .support-form select {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    color: var(--border-base);
+    background: var(--bg-body);
+    border-color: var(--border-base);
+    color: var(--text-main);
 }
 
 /* ===== Mobile Bottom Navigation ===== */
@@ -7974,26 +7946,27 @@ rect,
 
 /* ── Loader ── */
 [data-theme="dark"] .loader-overlay {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 /* ── Quantity / Generic buttons ── */
 [data-theme="dark"] .qty-btn {
-    background: var(--text-main);
-    color: var(--border-base);
-    border-color: var(--text-main);
+    background: var(--bg-body);
+    color: var(--text-main);
+    border-color: var(--border-base);
 }
 
 [data-theme="dark"] .qty-btn:hover {
-    background: var(--text-main);
+    background: var(--primary);
+    color: white;
 }
 
 /* ── Modal / Overlay ── */
 [data-theme="dark"] .modal-content,
 [data-theme="dark"] .overlay-panel {
-    background: var(--text-main);
-    border-color: var(--text-main);
-    color: var(--border-base);
+    background: var(--bg-card);
+    border-color: var(--border-base);
+    color: var(--text-main);
 }
 
 /* ── Scrollbar ── */
@@ -8002,11 +7975,11 @@ rect,
 }
 
 [data-theme="dark"] ::-webkit-scrollbar-track {
-    background: var(--text-main);
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb {
-    background: var(--text-main);
+    background: var(--border-base);
     border-radius: 4px;
 }
 

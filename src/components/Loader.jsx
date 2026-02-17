@@ -12,17 +12,12 @@ export default function Loader() {
 
     return (
         <div className="loader-overlay">
-            <div className="loader">
-                <span><span></span><span></span><span></span><span></span></span>
-                <div className="base">
-                    <span></span>
-                    <div className="face"></div>
-                </div>
+            <div className="loader triangle">
+                <svg viewBox="0 0 86 80">
+                    <polygon points="43 8 79 72 7 72"></polygon>
+                </svg>
             </div>
-            <div className="longfazers">
-                <span></span><span></span><span></span><span></span>
-            </div>
-            <p className="loader-text">Loading...</p>
+            <p className="loader-text">Weaving Excellence...</p>
         </div>
     );
 }

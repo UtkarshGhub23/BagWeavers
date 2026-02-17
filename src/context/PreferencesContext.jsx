@@ -96,6 +96,26 @@ const translations = {
         hi: 'कार्ट',
         mr: 'कार्ट',
     },
+    'header.welcome': {
+        en: '🙏Radhe Radhe🙏',
+        hi: '🙏राधे राधे🙏',
+        mr: '🙏राधे राधे🙏',
+    },
+    'header.welcomeGuest': {
+        en: '🙏Radhe Radhe🙏',
+        hi: '🙏राधे राधे🙏',
+        mr: '🙏राधे राधे🙏',
+    },
+    'header.search': {
+        en: 'Search',
+        hi: 'खोजें',
+        mr: 'शोध',
+    },
+    'header.profile': {
+        en: 'My Profile',
+        hi: 'मेरी प्रोफाइल',
+        mr: 'माझी प्रोफाइल',
+    },
 
     // ── Menu Bar ──
     'menu.allCollections': {
@@ -127,6 +147,11 @@ const translations = {
         en: 'Clutches',
         hi: 'क्लच',
         mr: 'क्लच',
+    },
+    'menu.collections': {
+        en: 'Collections',
+        hi: 'संग्रह',
+        mr: 'संग्रह',
     },
 
     // ── Hero Section ──

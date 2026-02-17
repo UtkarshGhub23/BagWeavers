@@ -1,17 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { usePreferences } from '../context/PreferencesContext';
+import {
+    Wrench,
+    Package,
+    CreditCard,
+    Bell,
+    ShieldCheck,
+    Palette,
+    Phone,
+    LogOut,
+    User as UserIcon,
+    ChevronRight,
+    MapPin,
+    Settings
+} from 'lucide-react';
 
 const SECTIONS = [
-    { id: 'account', icon: '🔧', label: 'Account Settings' },
-    { id: 'orders', icon: '📦', label: 'Orders & Addresses' },
-    { id: 'payment', icon: '💳', label: 'Payment Settings' },
-    { id: 'notifications', icon: '🔔', label: 'Notifications' },
-    { id: 'privacy', icon: '🔐', label: 'Privacy & Security' },
-    { id: 'preferences', icon: '🎨', label: 'Preferences' },
-    { id: 'support', icon: '📞', label: 'Support & Legal' },
+    { id: 'account', icon: <Wrench size={18} />, label: 'Account Settings' },
+    { id: 'orders', icon: <Package size={18} />, label: 'Orders & Addresses' },
+    { id: 'payment', icon: <CreditCard size={18} />, label: 'Payment Settings' },
+    { id: 'notifications', icon: <Bell size={18} />, label: 'Notifications' },
+    { id: 'privacy', icon: <ShieldCheck size={18} />, label: 'Privacy & Security' },
+    { id: 'preferences', icon: <Palette size={18} />, label: 'Preferences' },
+    { id: 'support', icon: <Phone size={18} />, label: 'Support & Legal' },
 ];
 
 export default function AccountPage() {
@@ -376,9 +391,9 @@ export default function AccountPage() {
                             <div className="settings-form-group">
                                 <label>Label</label>
                                 <select value={addressForm.label} onChange={(e) => setAddressForm({ ...addressForm, label: e.target.value })}>
-                                    <option value="Home">🏠 Home</option>
-                                    <option value="Work">💼 Work</option>
-                                    <option value="Other">📍 Other</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Work">Work</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div className="settings-form-group">
@@ -440,14 +455,14 @@ export default function AccountPage() {
                             <div key={i} className={`settings-address-card ${addr.isDefault ? 'default' : ''}`}>
                                 <div className="settings-address-top">
                                     <span className="settings-address-label">
-                                        {addr.label === 'Home' ? '🏠' : addr.label === 'Work' ? '💼' : '📍'} {addr.label}
+                                        {addr.label === 'Home' ? <Home size={16} /> : addr.label === 'Work' ? <Package size={16} /> : <MapPin size={16} />} {addr.label}
                                     </span>
                                     {addr.isDefault && <span className="settings-default-badge">Default</span>}
                                 </div>
                                 <p className="settings-address-name">{addr.name}</p>
                                 <p className="settings-address-line">{addr.line1}{addr.line2 ? `, ${addr.line2}` : ''}</p>
                                 <p className="settings-address-line">{addr.city}, {addr.state} - {addr.pincode}</p>
-                                <p className="settings-address-phone">📞 {addr.phone}</p>
+                                <p className="settings-address-phone"><Phone size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> {addr.phone}</p>
                                 <div className="settings-address-actions">
                                     <button onClick={() => handleEditAddress(i)}>Edit</button>
                                     <button onClick={() => handleDeleteAddress(i)} className="settings-delete-btn">Delete</button>
@@ -912,7 +927,17 @@ export default function AccountPage() {
 
                 {/* Content Panel */}
                 <main className="settings-content">
-                    {SECTION_RENDERERS[activeSection]()}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeSection}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {SECTION_RENDERERS[activeSection]()}
+                        </motion.div>
+                    </AnimatePresence>
                 </main>
             </div>
         </div>

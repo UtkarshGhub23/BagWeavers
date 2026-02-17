@@ -322,7 +322,7 @@ export default function Header() {
                                                 {user.name.charAt(0).toUpperCase()}
                                             </div>
                                             <div className="drawer-user-details">
-                                                <span className="drawer-welcome">{t('header.welcome')},</span>
+                                                <span className="drawer-welcome">{t('header.welcome')}</span>
                                                 <span className="drawer-name">{user.name}</span>
                                             </div>
                                         </div>

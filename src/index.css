@@ -1428,17 +1428,22 @@ ul {
     }
 
     .header-signin-btn {
-        width: 36px !important;
-        height: 36px !important;
+        width: 38px !important;
+        height: 38px !important;
         padding: 0 !important;
         border-radius: 50% !important;
-        background: rgba(0, 0, 0, 0.05) !important;
-        color: var(--text-main) !important;
-        box-shadow: none !important;
+        background: var(--brown-accent) !important;
+        color: white !important;
+        box-shadow: 0 4px 10px rgba(139, 69, 19, 0.25) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border: 1px solid var(--border-base) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    .header-signin-btn:active {
+        transform: scale(0.9) !important;
     }
 
     .header-user-name {
@@ -8265,13 +8270,35 @@ rect,
     color: var(--text-main);
 }
 
-.drawer-login-link {
+.drawer-auth-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.drawer-login-link,
+.drawer-signup-link {
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--brown-accent);
     display: flex;
     align-items: center;
     gap: 4px;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+}
+
+.drawer-login-link:active,
+.drawer-signup-link:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+}
+
+.drawer-link-divider {
+    color: var(--glass-border);
+    font-size: 0.8rem;
+    font-weight: 300;
 }
 
 /* Quick Actions */

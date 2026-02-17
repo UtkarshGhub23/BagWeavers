@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
 import { usePreferences } from '../context/PreferencesContext';
-import { X, ChevronRight, User, Search, ShoppingBag, Heart, Menu, Package, Settings, HelpCircle, Home } from 'lucide-react';
+import { X, ChevronRight, User, Search, ShoppingBag, Heart, Menu, Package, Settings, HelpCircle, Home, LogIn, LogOut } from 'lucide-react';
 
 export default function Header() {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -230,7 +230,7 @@ export default function Header() {
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <span className="desktop-only">{t('header.signIn')}</span>
-                                <User size={22} className="mobile-only" />
+                                <LogIn size={22} className="mobile-only" />
                             </motion.button>
                         )}
                     </div>
@@ -333,9 +333,15 @@ export default function Header() {
                                             </div>
                                             <div className="drawer-guest-details">
                                                 <span className="drawer-welcome">{t('header.welcomeGuest')}</span>
-                                                <Link to="/auth/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-login-link">
-                                                    {t('header.signIn')} <ChevronRight size={14} />
-                                                </Link>
+                                                <div className="drawer-auth-links">
+                                                    <Link to="/auth/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-login-link">
+                                                        {t('header.signIn')} <ChevronRight size={14} />
+                                                    </Link>
+                                                    <span className="drawer-link-divider">|</span>
+                                                    <Link to="/auth/signup" onClick={() => setMobileMenuOpen(false)} className="drawer-signup-link">
+                                                        {t('header.signUp')} <ChevronRight size={14} />
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -425,6 +431,7 @@ export default function Header() {
                                     </div>
                                     {user && (
                                         <button className="drawer-logout-action" onClick={() => { signOut(); setMobileMenuOpen(false); }}>
+                                            <LogOut size={16} />
                                             {t('header.logout')}
                                         </button>
                                     )}

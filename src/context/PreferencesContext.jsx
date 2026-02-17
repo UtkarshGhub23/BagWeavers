@@ -36,6 +36,11 @@ const translations = {
         hi: 'साइन इन',
         mr: 'साइन इन',
     },
+    'header.signUp': {
+        en: 'Sign Up',
+        hi: 'साइन अप',
+        mr: 'साइन अप',
+    },
     'header.account': {
         en: 'Account',
         hi: 'खाता',

@@ -97,12 +97,12 @@ export default function ResetPasswordPage() {
             <div className="auth-brand-panel">
                 <div className="auth-brand-content">
                     <div className="auth-brand-logo">
-                        <span className="brand-icon">BW</span>
-                        <span className="brand-text">BagWeavers</span>
+                        <span className="brand-icon">WV</span>
+                        <span className="brand-text">Weaves of Vrinda</span>
                     </div>
                     <h1>New Password</h1>
                     <p className="auth-brand-tagline">
-                        Choose a strong password to keep your BagWeavers account secure.
+                        Choose a strong password to keep your Weaves of Vrinda account secure.
                     </p>
                     <div className="auth-brand-features">
                         <div className="brand-feature">
@@ -130,11 +130,11 @@ export default function ResetPasswordPage() {
                     <div className="auth-header">
                         <div className="auth-icon-header">
                             <div className="auth-lock-icon">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C87533" strokeWidth="1.5">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5">
                                     <rect x="3" y="11" width="18" height="11" rx="2" />
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                    <circle cx="12" cy="16" r="1" fill="#C87533" />
-                                    <line x1="12" y1="16" x2="12" y2="19" stroke="#C87533" strokeWidth="1.5" />
+                                    <circle cx="12" cy="16" r="1" fill="var(--primary)" />
+                                    <line x1="12" y1="16" x2="12" y2="19" stroke="var(--primary)" strokeWidth="1.5" />
                                 </svg>
                             </div>
                         </div>

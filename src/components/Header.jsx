@@ -97,25 +97,23 @@ export default function Header() {
                         <motion.a
                             href="/"
                             className="header-logo-link"
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.02 }}
                         >
                             <div className="header-logo-icon">
-                                <svg viewBox="0 0 60 60" width="32" height="32">
-                                    <circle cx="30" cy="30" r="28" fill="#f5e642" stroke="var(--border-base)" strokeWidth="1" />
-                                    <circle cx="30" cy="30" r="22" fill="var(--bg-card)" opacity="0.5" />
-                                    <rect x="18" y="18" width="24" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
-                                    <path d="M22 18 Q22 10 30 10 Q38 10 38 18" fill="none" stroke="currentColor" strokeWidth="2" />
-                                    <line x1="30" y1="24" x2="30" y2="30" stroke="currentColor" strokeWidth="2" />
-                                    <line x1="27" y1="30" x2="33" y2="30" stroke="currentColor" strokeWidth="2" />
+                                <svg viewBox="0 0 60 60" width="36" height="36">
+                                    <rect x="15" y="15" width="30" height="25" rx="4" fill="none" stroke="var(--primary)" strokeWidth="2.5" />
+                                    <path d="M22 15 Q22 5 30 5 Q38 5 38 15" fill="none" stroke="var(--primary)" strokeWidth="2.5" />
+                                    <rect x="26" y="24" width="8" height="8" rx="1" fill="var(--primary)" opacity="0.2" />
                                 </svg>
                                 <span className="header-brand-name">Weaves of Vrinda</span>
                             </div>
                         </motion.a>
 
-                        <nav className="header-ecosystem-links desktop-only">
-                            <a href="https://vrindopnishad.in" className="ecosystem-link" target="_blank" rel="noreferrer">Vrindopnishad Portal</a>
+                        <nav className="header-nav-desktop desktop-only">
+                            <Link to="/category/all" className="nav-link-standard">Collections</Link>
+                            <Link to="/category/handbags" className="nav-link-standard">Handbags</Link>
+                            <Link to="/category/backpacks" className="nav-link-standard">Backpacks</Link>
                         </nav>
-                        <span className="header-collection-text desktop-only">{t('header.handmadeCollection')}</span>
                     </div>
 
                     {/* Center: Search Icon */}

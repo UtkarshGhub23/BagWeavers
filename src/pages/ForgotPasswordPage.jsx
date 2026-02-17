@@ -53,7 +53,7 @@ export default function ForgotPasswordPage() {
                     <div className="auth-form-container">
                         <div style={{ textAlign: 'center' }}>
                             <div className="auth-confirmation-icon">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C87533" strokeWidth="1.5">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5">
                                     <rect x="2" y="4" width="20" height="16" rx="2" />
                                     <path d="M22 4L12 13L2 4" />
                                 </svg>
@@ -89,8 +89,8 @@ export default function ForgotPasswordPage() {
             <div className="auth-brand-panel">
                 <div className="auth-brand-content">
                     <div className="auth-brand-logo">
-                        <span className="brand-icon">BW</span>
-                        <span className="brand-text">BagWeavers</span>
+                        <span className="brand-icon">WV</span>
+                        <span className="brand-text">Weaves of Vrinda</span>
                     </div>
                     <h1>Don't Worry!</h1>
                     <p className="auth-brand-tagline">
@@ -122,10 +122,10 @@ export default function ForgotPasswordPage() {
                     <div className="auth-header">
                         <div className="auth-icon-header">
                             <div className="auth-lock-icon">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C87533" strokeWidth="1.5">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5">
                                     <rect x="3" y="11" width="18" height="11" rx="2" />
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                    <circle cx="12" cy="16" r="1" fill="#C87533" />
+                                    <circle cx="12" cy="16" r="1" fill="var(--primary)" />
                                 </svg>
                             </div>
                         </div>

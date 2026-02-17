@@ -39,9 +39,6 @@ export default function Hero() {
                             </div>
                         ))}
                     </div>
-                    {/* Decorative Elements */}
-                    <div className="hero-blob blob-1"></div>
-                    <div className="hero-blob blob-2"></div>
                 </div>
 
                 {/* Text Content */}

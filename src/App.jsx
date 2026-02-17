@@ -6,7 +6,6 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { PreferencesProvider } from './context/PreferencesContext';
 import Header from './components/Header';
-import MenuBar from './components/MenuBar';
 import Loader from './components/Loader';
 import Footer from './components/Footer';
 import WhatsAppFAB from './components/WhatsAppFAB';
@@ -63,7 +62,6 @@ const MainLayout = () => {
   return (
     <>
       <Header />
-      <MenuBar />
       <div className="main-content-area">
         <Outlet />
       </div>

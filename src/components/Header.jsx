@@ -314,42 +314,119 @@ export default function Header() {
                             </div>
 
                             <div className="drawer-content-premium">
-                                <div className="drawer-section">
-                                    <h3 className="drawer-section-title">Collections</h3>
-                                    <nav className="drawer-nav-premium">
-                                        {[
-                                            { toPath: "/category/all", label: 'menu.allCollections' },
-                                            { toPath: "/category/handbags", label: 'menu.handbags' },
-                                            { toPath: "/category/backpacks", label: 'menu.backpacks' },
-                                            { toPath: "/category/crossbody", label: 'menu.crossbody' },
-                                            { toPath: "/category/totes", label: 'menu.totes' },
-                                            { toPath: "/category/clutches", label: 'menu.clutches' }
-                                        ].map((item, idx) => (
-                                            <motion.div
-                                                key={item.toPath}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: 0.1 + idx * 0.05 }}
-                                            >
-                                                <Link to={item.toPath} onClick={() => setMobileMenuOpen(false)} className="drawer-link-premium">
-                                                    <span className="link-text">{t(item.label)}</span>
-                                                    <ChevronRight size={18} />
+                                {/* User Profile Section */}
+                                <div className="drawer-profile-section">
+                                    {user ? (
+                                        <div className="drawer-user-info">
+                                            <div className="drawer-user-avatar">
+                                                {user.name.charAt(0).toUpperCase()}
+                                            </div>
+                                            <div className="drawer-user-details">
+                                                <span className="drawer-welcome">{t('header.welcome')},</span>
+                                                <span className="drawer-name">{user.name}</span>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="drawer-guest-info">
+                                            <div className="drawer-guest-avatar">
+                                                <User size={24} />
+                                            </div>
+                                            <div className="drawer-guest-details">
+                                                <span className="drawer-welcome">{t('header.welcomeGuest')}</span>
+                                                <Link to="/auth/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-login-link">
+                                                    {t('header.signIn')} <ChevronRight size={14} />
                                                 </Link>
-                                            </motion.div>
-                                        ))}
-                                    </nav>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Quick Actions Grid */}
+                                <div className="drawer-quick-actions">
+                                    <button onClick={() => { setMobileMenuOpen(false); navigate('/'); }} className="quick-action-item">
+                                        <Home size={20} />
+                                        <span>{t('header.home')}</span>
+                                    </button>
+                                    <button onClick={() => { setMobileMenuOpen(false); setSearchOpen(true); }} className="quick-action-item">
+                                        <Search size={20} />
+                                        <span>{t('header.search')}</span>
+                                    </button>
+                                    <button onClick={() => { setMobileMenuOpen(false); navigate('/contact'); }} className="quick-action-item">
+                                        <HelpCircle size={20} />
+                                        <span>{t('header.support')}</span>
+                                    </button>
+                                </div>
+
+                                <div className="drawer-scroll-area">
+                                    <div className="drawer-section">
+                                        <h3 className="drawer-section-title">{t('menu.collections')}</h3>
+                                        <nav className="drawer-nav-premium">
+                                            {[
+                                                { toPath: "/category/all", label: 'menu.allCollections' },
+                                                { toPath: "/category/handbags", label: 'menu.handbags' },
+                                                { toPath: "/category/backpacks", label: 'menu.backpacks' },
+                                                { toPath: "/category/crossbody", label: 'menu.crossbody' },
+                                                { toPath: "/category/totes", label: 'menu.totes' },
+                                                { toPath: "/category/clutches", label: 'menu.clutches' }
+                                            ].map((item, idx) => (
+                                                <motion.div
+                                                    key={item.toPath}
+                                                    initial={{ opacity: 0, x: -10 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: 0.2 + idx * 0.05 }}
+                                                >
+                                                    <Link to={item.toPath} onClick={() => setMobileMenuOpen(false)} className="drawer-link-premium">
+                                                        <span className="link-text">{t(item.label)}</span>
+                                                        <ChevronRight size={18} className="link-chevron" />
+                                                    </Link>
+                                                </motion.div>
+                                            ))}
+                                        </nav>
+                                    </div>
+
+                                    {user && (
+                                        <div className="drawer-section">
+                                            <h3 className="drawer-section-title">{t('header.account')}</h3>
+                                            <nav className="drawer-nav-premium">
+                                                {[
+                                                    { toPath: "/account", label: 'header.profile', icon: User },
+                                                    { toPath: "/account?tab=orders", label: 'header.myOrders', icon: Package },
+                                                    { toPath: "/wishlist", label: 'header.wishlist', icon: Heart },
+                                                    { toPath: "/account?tab=preferences", label: 'header.settings', icon: Settings }
+                                                ].map((item, idx) => (
+                                                    <motion.div
+                                                        key={item.toPath}
+                                                        initial={{ opacity: 0, x: -10 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: 0.5 + idx * 0.05 }}
+                                                    >
+                                                        <Link to={item.toPath} onClick={() => setMobileMenuOpen(false)} className="drawer-link-premium">
+                                                            <div className="link-content-with-icon">
+                                                                <item.icon size={18} />
+                                                                <span className="link-text">{t(item.label)}</span>
+                                                            </div>
+                                                            <ChevronRight size={18} className="link-chevron" />
+                                                        </Link>
+                                                    </motion.div>
+                                                ))}
+                                            </nav>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="drawer-footer-premium">
-                                    {user ? (
-                                        <Link to="/settings" onClick={() => setMobileMenuOpen(false)} className="drawer-user-btn">
-                                            <User size={20} />
-                                            <span>{t('header.account')}</span>
-                                        </Link>
-                                    ) : (
-                                        <Link to="/auth/signin" onClick={() => setMobileMenuOpen(false)} className="drawer-auth-btn">
-                                            {t('header.signIn')}
-                                        </Link>
+                                    <div className="drawer-social-links">
+                                        <a href="https://www.instagram.com/the.weavers_?igsh=bHM1OHExa3RkZG94" target="_blank" rel="noreferrer" className="drawer-social-btn instagram">
+                                            <span className="social-dot"></span> Instagram
+                                        </a>
+                                        <a href="https://whatsapp.com/channel/0029VbBYaqa8vd1Vf8k0Yp0N" target="_blank" rel="noreferrer" className="drawer-social-btn whatsapp">
+                                            <span className="social-dot"></span> WhatsApp
+                                        </a>
+                                    </div>
+                                    {user && (
+                                        <button className="drawer-logout-action" onClick={() => { signOut(); setMobileMenuOpen(false); }}>
+                                            {t('header.logout')}
+                                        </button>
                                     )}
                                 </div>
                             </div>

@@ -829,6 +829,59 @@ ul {
     z-index: 2;
 }
 
+@media (max-width: 1024px) {
+    .hero-container-premium {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .hero-content-premium {
+        max-width: 100%;
+    }
+
+    .hero-title-premium {
+        font-size: 3rem;
+    }
+
+    .hero-visual-premium {
+        width: 100%;
+        height: auto;
+    }
+
+    .premium-carousel-wrap {
+        width: 100%;
+        max-width: 400px;
+        height: 450px;
+        margin: 0 auto;
+    }
+
+    .hero-actions-premium {
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-social-premium {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-title-premium {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle-premium {
+        font-size: 1.4rem;
+    }
+
+    .premium-carousel-wrap {
+        height: 350px;
+        border-radius: 150px 150px 20px 20px;
+    }
+}
+
 .premium-slide {
     position: absolute;
     top: 0;
@@ -1400,7 +1453,11 @@ ul {
     }
 
     .header-nav-desktop {
-        display: none;
+        display: none !important;
+    }
+
+    .header-icon-btn.header-heart-btn {
+        display: flex;
     }
 }
 
@@ -1410,8 +1467,13 @@ ul {
     }
 
     .header-brand-name {
-        font-size: 13px;
+        font-size: 14px;
         letter-spacing: 0.5px;
+    }
+
+    .header-logo-icon svg {
+        width: 30px;
+        height: 30px;
     }
 
     .header-right {
@@ -1421,11 +1483,6 @@ ul {
     .header-icon-btn {
         width: 36px;
         height: 36px;
-    }
-
-    .header-logo-icon svg {
-        width: 28px;
-        height: 28px;
     }
 
     .header-signin-btn {
